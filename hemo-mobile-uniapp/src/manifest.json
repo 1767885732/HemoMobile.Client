@@ -1,7 +1,7 @@
 {
   "name": "血透移动系统",
   "appid": "__UNI__HEMO_MOBILE",
-  "description": "血透移动系统护士版",
+  "description": "血透移动系统护士版 - UniApp版本",
   "versionName": "1.0.0",
   "versionCode": "100",
   "transformPx": false,
@@ -37,7 +37,10 @@
     "modules": {},
     "distribute": {
       "android": {
-        "permissions": ["android.permission.INTERNET", "android.permission.CAMERA"]
+        "permissions": [
+          "android.permission.INTERNET",
+          "android.permission.CAMERA"
+        ]
       },
       "ios": {}
     }
