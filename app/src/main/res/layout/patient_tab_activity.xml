@@ -1,0 +1,55 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+  
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <fragment
+                android:id="@+id/tabCureInfo"
+                android:name="com.mdsd.docare.hemodialysis.app.ui.patient.fragment.CureInfoFm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <fragment
+                android:id="@+id/tabTempOrders"
+                android:name="com.mdsd.docare.hemodialysis.app.ui.patient.fragment.TempOrdersFm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <fragment
+                android:id="@+id/tabDialysisParam"
+                android:name="com.mdsd.docare.hemodialysis.app.ui.patient.fragment.DialysisParamFm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <fragment
+                android:id="@+id/tabDialysisSummary"
+                android:name="com.mdsd.docare.hemodialysis.app.ui.patient.fragment.DialysisSummaryFm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        
+        </FrameLayout>
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:background="@drawable/tab_bottom_bg"
+            android:divider="@null">
+        </TabWidget>
+        
+    </LinearLayout>
+
+</TabHost>

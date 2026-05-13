@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/ivTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_img_top" />
+
+    <!-- 登录框 -->
+
+    <LinearLayout
+        android:id="@+id/lytLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivTop"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_big"
+        android:visibility="gone" >
+
+        <com.mdsd.library.ui.ClearEditText
+            android:id="@+id/etAccount"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/login_account_input_bg"
+            android:gravity="center_vertical"
+            android:hint="@string/login_input_account_hint"
+            android:inputType="none"
+            android:paddingRight="@dimen/margin_small"
+            android:textSize="@dimen/font_size" />
+
+        <com.mdsd.library.ui.ClearEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="@drawable/login_password_input_bg"
+            android:gravity="center_vertical"
+            android:hint="@string/login_input_password_hint"
+            android:inputType="textPassword"
+            android:paddingRight="@dimen/margin_small"
+            android:textSize="@dimen/font_size" />
+
+        <com.mdsd.library.ui.autoBgButton.AutoBgButton
+            android:id="@+id/btnLogin"
+            style="@style/ButtonDefGreenR"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/login_button_login" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_img_bottom" />
+
+</RelativeLayout>

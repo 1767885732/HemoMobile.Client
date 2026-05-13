@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mdsd.docare.hemodialysis.app">
+
+    <!-- 权限申明 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:name=".core.app.CustomApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
+        <activity
+            android:name=".ui.main.LoadingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.main.LoginActivity"
+            android:label="@string/app_name"
+            android:logo="@drawable/bar_logo"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.main.ConditionFilterActivity"
+            android:label="@string/title_activity_condition_filter"
+            android:logo="@drawable/bar_logo"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.patient.PatientListActivity"
+            android:label="@string/title_activity_patient_list"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.patient.PatientTabActivity"
+            android:label="@string/title_activity_patient_tab"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".ui.patient.DialysisParamEditActivity"
+            android:label="@string/title_activity_dialysis_param_edit"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".ui.main.ConfigActivity"
+            android:label="@string/title_activity_config"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".ui.patient.AlertDialog"
+            android:label="@string/title_activity_config"
+            android:screenOrientation="portrait"
+            android:theme="@style/appTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <!--  
+        <service android:name=".service.MessageCallService"> </service>
+
+        <receiver android:name=".receiver.MessageHandleReceiver" android:enabled="true"/>
+        -->
+        <service android:name="com.mdsd.library.manage.update.DownloadApkService"></service>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.mdsd.docare.hemodialysis.app.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.mdsd.library.ui.autoBgButton.AutoBgButton
+        android:id="@+id/btnUseModel"
+        style="@style/ButtonDefAdd"
+        android:text="@string/dialysis_summary_use_model" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_normal" >
+
+        <EditText
+            android:id="@+id/etInput"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/radius_stroke_white_bg"
+            android:gravity="top|left"
+            android:inputType="none"
+            android:padding="@dimen/margin_small"
+            android:text="@string/dia_s_input_def"
+            android:textSize="@dimen/font_size" />
+
+        <com.mdsd.library.ui.autoBgButton.AutoBgButton
+            android:id="@+id/btnSave"
+            style="@style/ButtonDefGreen"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/comm_save" />
+
+        <!-- <com.mdsd.library.ui.autoBgButton.AutoBgButton -->
+        <!-- style="@style/ButtonDefGreen" -->
+        <!-- android:layout_marginTop="@dimen/margin_normal" -->
+        <!-- android:text="@string/dialysis_summary_add_model" /> -->
+    </LinearLayout>
+
+</LinearLayout>

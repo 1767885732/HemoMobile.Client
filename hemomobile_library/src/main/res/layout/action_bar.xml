@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/rltTitleLeft"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tvTitleLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical|left"
+            android:paddingLeft="16dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/action_bar_title_text_size" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lytTitle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:baselineAligned="false" >
+
+        <!-- left -->
+
+        <com.mdsd.library.ui.actionBar.ActionBarButton
+            android:id="@+id/actionLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <!-- title -->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/action_bar_title_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+    <!-- right -->
+
+    <LinearLayout
+        android:id="@+id/lytRight"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" />
+
+</LinearLayout>

@@ -1,0 +1,368 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/rootView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_normal" >
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormal"
+                app:itemTitle="@string/dia_s_jlsj"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.DateTextView
+                    android:id="@+id/dtvRecordTime"
+                    style="@style/TextViewDefHeightBg"
+                    android:tag="TextView.create_Date"
+                    app:timeType="time"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_jmy"
+                app:titleSize="@dimen/font_size" >
+
+				<LinearLayout android:orientation="horizontal" >
+				    <com.mdsd.library.ui.ClearEditText
+				        style="@style/EditTextDefNumberDecimal"
+				        android:tag="TextView.venous_Pressure"
+				        android:textSize="@dimen/font_size" />
+				
+				    <Spinner
+				        android:id="@+id/cure_spinner_jmydw"
+				        style="@style/SpinnerDef"
+				        android:tag="Spinner.venous_Pressure_Unit" />
+				</LinearLayout>
+
+            </com.mdsd.library.ui.FormItem>
+            
+            <!--<com.mdsd.library.ui.FormItem-->
+                <!--style="@style/FormItemDefTitleNormalMargin"-->
+                <!--app:itemTitle="@string/dia_s_dmy"-->
+                <!--app:titleSize="@dimen/font_size" >-->
+
+				<!--<LinearLayout android:orientation="horizontal" >-->
+				    <!--<com.mdsd.library.ui.ClearEditText-->
+				        <!--style="@style/EditTextDefNumberDecimal"-->
+				        <!--android:tag="TextView.artery_Pressure"-->
+				        <!--android:textSize="@dimen/font_size" />-->
+				<!---->
+				    <!--<Spinner-->
+				        <!--android:id="@+id/cure_spinner_dmydw"-->
+				        <!--style="@style/SpinnerDef"-->
+				        <!--android:tag="Spinner.venous_Pressure_Unit" />-->
+				<!--</LinearLayout>-->
+
+            <!--</com.mdsd.library.ui.FormItem>-->
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_kmy"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.transmembrane_Pressure"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_ddd"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_ddd"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.conductivity"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <!--<com.mdsd.library.ui.FormItem-->
+                <!--style="@style/FormItemDefTitleNormalMargin"-->
+                <!--app:itemTitle="@string/dia_s_zhl"-->
+                <!--app:titleSize="@dimen/font_size" >-->
+
+                <!--<com.mdsd.library.ui.ClearEditText-->
+                    <!--style="@style/EditTextDefNumberDecimal"-->
+                    <!--android:tag="TextView.displacement"-->
+                    <!--android:textSize="@dimen/font_size" />-->
+            <!--</com.mdsd.library.ui.FormItem>-->
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_xll"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.blood_Flow"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_txyll"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_txyll"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.dialysate_Rate"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_cll"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_cll"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.urf"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_zxqcl"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_zxqcl"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.online_Clearance_Rate"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_knj"
+                app:titleSize="@dimen/font_size">
+
+                <LinearLayout android:orientation="horizontal">
+
+                    <com.mdsd.library.ui.ClearEditText
+                        android:id="@+id/cure_ed_knj"
+                        style="@style/EditTextDefNumberDecimal"
+                        android:tag="TextView.anticoagulant"
+                        android:textSize="@dimen/font_size" />
+
+                    <Spinner
+                        android:id="@+id/cure_spinner_knjdw"
+                        style="@style/SpinnerDef"
+                        android:tag="Spinner.anticoagulantunit" />
+                </LinearLayout>
+            </com.mdsd.library.ui.FormItem>
+
+             <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_tw"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_tw"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.temperature"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_ssy"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_ssy"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.systolic_Pressure"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_szy"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_szy"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.diastolic_Pressure"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+            
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_hx"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_hx"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.breath"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+            
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_xl"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/cure_ed_mb"
+                    style="@style/EditTextDefNumberDecimal"
+                    android:tag="TextView.cardiotach"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <!--<com.mdsd.library.ui.FormItem-->
+                <!--style="@style/FormItemDefTitleNormalMargin"-->
+                <!--app:itemTitle="@string/dia_s_sx"-->
+                <!--app:titleSize="@dimen/font_size" >-->
+
+                <!--&lt;!&ndash; <RadioGroup-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                    <!--<CheckBox-->
+                        <!--android:id="@+id/cure_chk_sx_s"-->
+                        <!--style="@style/RadioButtonDef"-->
+                        <!--android:scaleX="1.5"-->
+	                    <!--android:scaleY="1.5"-->
+	                    <!--android:layout_marginLeft="10dp"-->
+	                    <!--android:paddingLeft="-5dp"-->
+                        <!--android:tag="CheckBox.vascular_Access_Errhyisis.1"-->
+                        <!--android:text="@string/comm_yes" />-->
+
+                    <!--<CheckBox-->
+                        <!--android:id="@+id/cure_chk_sx_f"-->
+                        <!--style="@style/RadioButtonDef"-->
+                        <!--android:scaleX="1.5"-->
+	                    <!--android:scaleY="1.5"-->
+	                    <!--android:layout_marginLeft="25dp"-->
+	                    <!--android:paddingLeft="-5dp"-->
+                        <!--android:tag="CheckBox.vascular_Access_Errhyisis.0"-->
+                        <!--android:text="@string/comm_no" />-->
+                <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+            <!--</com.mdsd.library.ui.FormItem>-->
+
+            <!--<com.mdsd.library.ui.FormItem-->
+                <!--style="@style/FormItemDefTitleNormalMargin"-->
+                <!--app:itemTitle="@string/dia_s_ht"-->
+                <!--app:titleSize="@dimen/font_size" >-->
+
+                <!--&lt;!&ndash; <RadioGroup-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                    <!--<CheckBox-->
+                        <!--android:id="@+id/cure_chk_ht_s"-->
+                        <!--style="@style/RadioButtonDef"-->
+                        <!--android:scaleX="1.5"-->
+	                    <!--android:scaleY="1.5"-->
+	                    <!--android:layout_marginLeft="10dp"-->
+	                    <!--android:paddingLeft="-5dp"-->
+                        <!--android:tag="CheckBox.vascular_Access_Glide.1"-->
+                        <!--android:text="@string/comm_yes" />-->
+
+                    <!--<CheckBox-->
+                        <!--android:id="@+id/cure_chk_ht_f"-->
+                        <!--style="@style/RadioButtonDef"-->
+                        <!--android:scaleX="1.5"-->
+	                    <!--android:scaleY="1.5"-->
+	                    <!--android:layout_marginLeft="25dp"-->
+	                    <!--android:paddingLeft="-5dp"-->
+                        <!--android:tag="CheckBox.vascular_Access_Glide.0"-->
+                        <!--android:text="@string/comm_no" />-->
+                <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+            <!--</com.mdsd.library.ui.FormItem>-->
+            
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_lcbx"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/TextView_clinical_Manifestation"
+                     style="@style/EditTextDef"
+                    android:tag="TextView.clinical_Manifestation"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_zl"
+                app:titleSize="@dimen/font_size" >
+
+                <com.mdsd.library.ui.ClearEditText
+                    android:id="@+id/txtCure_Mode"
+                    style="@style/EditTextDef"
+                    android:tag="TextView.cure_Mode"
+                    android:textSize="@dimen/font_size" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_lsyy"
+                app:titleSize="@dimen/font_size" >
+
+                <Spinner
+                    android:id="@+id/spi_clinical_Manifestation"
+                    style="@style/SpinnerDef" />
+            </com.mdsd.library.ui.FormItem>
+
+            <com.mdsd.library.ui.FormItem
+                style="@style/FormItemDefTitleNormalMargin"
+                app:itemTitle="@string/dia_s_jlhs"
+                app:titleSize="@dimen/font_size" >
+
+                <Spinner
+                    android:id="@+id/spiNurse"
+                    style="@style/SpinnerDef"
+                    android:tag="Spinner.nurse_Id" />
+            </com.mdsd.library.ui.FormItem>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.mdsd.library.ui.autoBgButton.AutoBgButton
+        android:id="@+id/btnRead"
+        style="@style/ButtonDefGray"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginRight="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:visibility="gone"
+        android:text="@string/read_xymb" />
+
+    <com.mdsd.library.ui.autoBgButton.AutoBgButton
+        android:id="@+id/btnSave"
+        style="@style/ButtonDefGreen"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginRight="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:text="@string/comm_save" />
+
+    <com.mdsd.library.ui.autoBgButton.AutoBgButton
+        android:id="@+id/btnCancel"
+        style="@style/ButtonDefGray"
+        android:layout_margin="@dimen/margin_normal"
+        android:text="@string/comm_cancel" />
+
+</LinearLayout>

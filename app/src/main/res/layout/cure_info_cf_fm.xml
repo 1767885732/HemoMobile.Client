@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.mdsd.docare.hemodialysis.app"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_normal" >
+        
+        <!-- 患者病情 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormal"-->
+            <!--app:itemTitle="@string/cure_tx_hzbq"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+            <!---->
+            <!--<Spinner-->
+                <!--android:id="@+id/cure_spinner_hzbq"-->
+                <!--style="@style/SpinnerDef"-->
+                <!--android:tag="Spinner.focus_Level" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 神志 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_sz"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+            <!---->
+            <!--<Spinner-->
+                <!--android:id="@+id/cure_spinner_sz"-->
+                <!--style="@style/SpinnerDef"-->
+                <!--android:tag="Spinner.senses" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 过敏史 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_gms"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_gms"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="text"-->
+                <!--android:tag="TextView.allergic"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 体温 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_tw"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_tw"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.before_Temperature"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 呼吸 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_hx"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_hx"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.br"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 脉搏 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_mb"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_mb"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.before_BP"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+
+        <!-- 治疗方式 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_zlfs"
+            app:titleSize="@dimen/font_size" >
+            
+            <Spinner
+                android:id="@+id/cure_spinner_zlfs"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.purification_Mode" />
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 治疗时间 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_zlsj"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_zlsj"
+                style="@style/EditTextDef"
+                android:layout_weight="1"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.frequency_Hours"
+                android:textSize="@dimen/font_size" />
+            
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/comm_hour" android:textSize="@dimen/font_size" />
+            
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_zlsjfz"
+                style="@style/EditTextDef"
+                android:layout_weight="1"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.frequency_Minute"
+                android:textSize="@dimen/font_size" />
+            
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/comm_min" android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem>
+        
+        <!-- 治疗时间分钟 -->
+
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_zlsjfz"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_zlsjfz"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.frequency_Minute"
+                android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!-- 净化次数 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_jhcs"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_jhcs"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.clean_Up_Times"
+                android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 血管通路 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_xgtl"
+            app:titleSize="@dimen/font_size" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_xgtl"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.vascular_Access_Id" />
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 净化器类型 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_jhqlx"
+            app:titleSize="@dimen/font_size" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_jhqlx"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.machine_Type" />
+        </com.mdsd.library.ui.FormItem>
+        
+        <!-- 透析机型号 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_txjxh"
+            app:titleSize="@dimen/font_size" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_txjxh"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.machine_Id" />
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 透析膜 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_txm"
+            app:titleSize="@dimen/font_size" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_txm"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.purifier_Name" />
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 面积 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_mj"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_mj"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.purifier_M2"
+                android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 抗凝方式 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_knfs"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<Spinner-->
+                <!--android:id="@+id/cure_spinner_knj"-->
+                <!--style="@style/SpinnerDef"-->
+                <!--android:tag="Spinner.heparin_Species" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+
+        <!-- 首剂 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_sj"
+            app:titleSize="@dimen/font_size" >
+
+            <LinearLayout android:orientation="horizontal" >
+
+                <com.mdsd.library.ui.ClearEditText
+	                android:id="@+id/cure_ed_sj"
+	                style="@style/EditTextDef"
+	                android:inputType="number|numberDecimal"
+	                android:tag="TextView.first_Heparin"
+	                android:textSize="@dimen/font_size" />
+
+                <Spinner
+                    android:id="@+id/cure_spinner_sjdw"
+                    style="@style/SpinnerDef"
+                    android:tag="Spinner.first_Drug_Unit" />
+
+            </LinearLayout>
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 追加 -->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_zj"
+            app:titleSize="@dimen/font_size" >
+
+            <LinearLayout android:orientation="horizontal" >
+
+                <com.mdsd.library.ui.ClearEditText
+	                android:id="@+id/cure_ed_zj"
+	                style="@style/EditTextDef"
+	                android:inputType="number|numberDecimal"
+	                android:tag="TextView.dosis_Sustentativa"
+	                android:textSize="@dimen/font_size" />
+
+                <Spinner
+                    android:id="@+id/cure_spinner_zjdw"
+                    style="@style/SpinnerDef"
+                    android:tag="Spinner.second_Drug_Unit" />
+            </LinearLayout>
+        </com.mdsd.library.ui.FormItem>
+
+        <!-- 鱼精蛋白 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_yjdb"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_yjdb"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.amylaceum"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+
+        <!-- 净化器使用 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_jhqsy"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/cure_radiobtn_jhqsy_sc"-->
+                <!--style="@style/RadioButtonDef"-->
+                <!--android:scaleX="1.5"-->
+                <!--android:scaleY="1.5"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:paddingLeft="-5dp"-->
+                <!--android:tag="CheckBox.use_Type.1"-->
+                <!--android:text="@string/cure_tx_sc" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 透析液品牌 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_txypp"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+            <!---->
+            <!--<Spinner-->
+                <!--android:id="@+id/cure_spinner_txypp"-->
+                <!--style="@style/SpinnerDef"-->
+                <!--android:tag="Spinner.subjective_Comfort" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 灌流器 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_tx_glq"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+            <!---->
+            <!--<Spinner-->
+                <!--android:id="@+id/cure_spinner_glq"-->
+                <!--style="@style/SpinnerDef"-->
+                <!--android:tag="Spinner.in_Basket_Wound_Allergy" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+
+        <!-- 使用次数 -->
+
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_tx_sycs"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_sycs"
+                style="@style/EditTextDef"
+                android:inputType="number"
+                android:tag="TextView.reuse_Times"
+                android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!-- 钾 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/potassium_ion"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_potassium_ion"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.potassium_Ion"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 钠 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/sodium"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_sodium"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.sodion"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 钙 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/calcium"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_calcium"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.calcium_Ion"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 碳酸氢根 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/bicarbonate"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_bicarbonate"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.bircarbonate"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 血流量 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/blood_flow_amount"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_blood_flow_amount"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.bloow_Flow"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 透析液流量 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/dia_s_txyll"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_dialysate_flow"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.dialysate_Flow"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+    </LinearLayout>
+
+</ScrollView>

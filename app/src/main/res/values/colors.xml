@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 应用相关颜色值 -->
+
+    <color name="app_bg">#ECF0EF</color>
+    <color name="app_bottom_divider">#D0D1D1</color>
+    <color name="app_input_border">#A1ABB3</color>
+    <color name="app_green_color">#51D3C7</color>
+    <color name="app_enable">#C8CECC</color>
+    <color name="button_gray">#B3B4B4</color>
+
+    <!-- actionbar颜色值 -->
+    <color name="bar_bg">#F1F2F6</color>
+    <color name="bar_title">#5D6469</color>
+
+    <!-- bottom-tab -->
+    <color name="tab_bg_s">#C8CECC</color>
+    <color name="tab_bottom_line">#BFBFBF</color>
+    <color name="list_item_select">#9BE1DA</color>
+    <color name="pager_tab_bg">#F5F5F5</color>
+    
+    <color name="dialysi_param_row_1">#ECF0EF</color>
+    <color name="dialysi_param_row_2">#F7F9F8</color>
+    
+    <color name="radius_stroke">#9AA7AF</color>
+    
+    <color name="btn_gray_normal">#c0c0c0</color>
+    <color name="btn_gray_pressed_status">#b5b5b6</color>
+
+</resources>

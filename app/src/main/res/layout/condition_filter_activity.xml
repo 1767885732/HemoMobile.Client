@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_big"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choice_date"
+        android:textSize="@dimen/font_size" />
+
+    <com.mdsd.library.ui.DateTextView
+        android:id="@+id/dtvDate"
+        style="@style/TextViewDefHeightBg"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/font_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:text="@string/choice_time_range"
+        android:textSize="@dimen/font_size" />
+
+    <Spinner
+        android:id="@+id/spiTimeRange"
+        style="@style/SpinnerDef"
+        android:layout_marginTop="@dimen/margin_small"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:text="@string/choice_txs"
+        android:textSize="@dimen/font_size" />
+
+    <Spinner
+        android:id="@+id/spiTxs"
+        style="@style/SpinnerDef"
+        android:layout_marginTop="@dimen/margin_small"
+        android:gravity="center" />
+    
+    <com.mdsd.library.ui.autoBgButton.AutoBgButton
+        android:id="@+id/btnConfirm"
+        style="@style/ButtonDefGreen"
+        android:layout_marginTop="@dimen/margin_big"
+        android:text="@string/comm_confirm" />
+
+</LinearLayout>

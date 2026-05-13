@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">血透移动系统</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="comm_init">正在初始化数据&#8230;</string>
+    <string name="comm_set">设置</string>
+    <string name="dialog_data_loading">正在加载数据&#8230;</string>
+    <string name="dialog_data_commit">数据提交中&#8230;</string>
+    <string name="app_refresh">刷新</string>
+    <string name="connection_test_hint">温馨提示：设置完ip地址后，请直接按返回键</string>
+     <string name="config_hint_ip">请输入服务ip地址</string>
+    <!-- login activity -->
+    <string name="login_input_account_hint">请输入用户名</string>
+    <string name="login_input_password_hint">请输入密码</string>
+    <string name="login_button_login">登录</string>
+
+    <!-- filter activity -->
+    <string name="title_activity_condition_filter">血透信息搜索</string>
+    <string name="choice_date">选择日期</string>
+    <string name="choice_time_range">选择时段</string>
+    <string name="choice_txs">选择透析室</string>
+
+    <!-- patient choice -->
+    <string name="title_activity_patient_list">血透患者选择</string>
+    <string name="title_activity_patient_tab">治疗详情</string>
+
+    <!-- tabbottom title -->
+    <string name="tab_cure_info">治疗信息</string>
+    <string name="tab_temp_orders">临时医嘱</string>
+    <string name="tab_dialysis_param">透析参数</string>
+    <string name="tab_dialysis_summary">透析小结</string>
+
+    <!-- page tab title -->
+    <string name="page_tab_cure_info_tx">透析信息</string>
+    <string name="page_tab_cure_info_pg">评估与治疗情况</string>
+
+    <!-- 治疗信息 -->
+    <!-- 透析处方 -->
+    <string name="cure_tx_hzbq">患者病情</string>
+    <string name="cure_tx_sz">神志</string>
+    <string name="cure_tx_tw">体温℃</string>
+    <string name="cure_tx_hx">呼吸(次/min)</string>
+    <string name="cure_tx_mb">脉搏(次/min)</string>
+    <string name="cure_tx_gms">过敏史</string>
+    <string name="cure_tx_zlfs">治疗方式</string>
+    <string name="cure_tx_zlsj">治疗时间</string>
+    <string name="cure_tx_zlsjfz">治疗时间min</string>
+    <string name="cure_tx_jhcs">净化次数</string>
+    <string name="cure_tx_xgtl">血管通路</string>
+    <string name="cure_tx_jhqlx">净化器类型</string>
+    <string name="cure_tx_txm">透析膜</string>
+    <string name="cure_tx_mj">面积M²</string>
+    <string name="cure_tx_txjxh">透析机型号</string>
+    <string name="cure_tx_knfs">抗凝方式</string>
+    <string name="cure_tx_sj">首剂</string>
+    <string name="cure_tx_zj">追加</string>
+    <string name="cure_tx_yjdb">鱼精蛋白mg/kg</string>
+    <string name="cure_tx_jhqsy">净化器使用</string>
+    <string name="cure_tx_sc">首次</string>
+    <string name="cure_tx_cf">重复</string>
+    <string name="cure_tx_sycs">使用次数</string>
+    <string name="cure_tx_uf">UF(ml/h)</string>
+    <string name="cure_tx_sum_uf">总UF(ml/h)</string>
+    <string name="cure_tx_txypp">透析液品牌</string>
+    <string name="cure_tx_glq">灌流器</string>
+    <string name="comm_hour">h</string>
+    <string name="comm_min">min</string>
+
+    <!-- 导管评估与治疗情况 -->
+    <string name="cure_pg_gdlg">固定牢固</string>
+    <string name="cure_pg_ht">滑脱</string>
+    <string name="cure_pg_ccdjbhz">穿刺点局部红肿</string>
+    <string name="cure_pg_sx">渗血</string>
+    <string name="cure_pg_sy">渗液</string>
+    <string name="cure_pg_xs">血栓</string>
+    <string name="cure_pg_xlqk">血流情况</string>
+    <string name="cure_pg_xlgr">导管相关血流感染</string>
+    <string name="cure_pg_ssd">舒适度</string>
+    <string name="cure_pg_gtz">干体重Kg</string>
+    <string name="cure_pg_ywlyz">衣物轮椅重Kg</string>
+    <string name="cure_pg_txqtz">透前体重Kg</string>
+    <string name="cure_pg_txhtz">透后体重Kg</string>
+    <string name="cure_pg_sctxhtz">上次透后体重Kg</string>
+    <string name="cure_pg_yjts">预计脱水Kg</string>
+    <string name="cure_pg_sjts">实际脱水Kg</string>
+    <string name="cure_pg_zhyzl">置换液总量L</string>
+    <string name="cure_pg_lcyzl">滤出液总量L</string>
+    <string name="cure_pg_xjzl">血浆总量L</string>
+    <string name="cure_pg_lcxjzl">滤出血浆总量L</string>
+    <string name="cure_pg_ysjlyz">医生记录医嘱</string>
+    <string name="cure_pg_gtzbz">干体重备注</string>
+    <string name="cure_pg_save">保存</string>
+    <string name="cure_pg_zhfs">置换方式</string>
+    <string name="cure_pg_zhypf">置换液配方</string>
+    <string name="cure_pg_zhypftstz">置换液配方特殊调整</string>
+    <string name="cure_pg_knjsy">抗凝剂使用</string>
+    <string name="cure_pg_tsjdsx">特殊交代事项</string>
+    <string name="cure_pg_tqxy">透前血压mmHg</string>
+    <string name="cure_pg_thxy">透后血压mmHg</string>
+    <string name="cure_pg_thtw">透后体温℃</string>
+    <string name="cure_pg_thhx">透后呼吸(次/min)</string>
+    <string name="cure_pg_thmb">透后脉搏(次/min)</string>
+    <string name="cure_pg_grade0">0级</string>
+    <string name="cure_pg_grade1">1级</string>
+    <string name="cure_pg_grade2">2级</string>
+    <string name="cure_pg_grade3">3级</string>
+    <string name="cure_pg_sfwc">是否卧床</string>
+    <string name="cure_pg_thwc">卧床</string>
+    <string name="cure_pg_sjzlsj">实际治疗时间</string>
+    <string name="cure_pg_sjzlsjfz">实际治疗时间min</string>
+
+    <!-- 临时医嘱 -->
+    <string name="temp_orders_excute">执行</string>
+    <string name="temp_orders_back">退回</string>
+    <string name="temp_orders_back_already">已退回</string>
+    <string name="temp_orders_null">该患者暂无用药信息</string>
+    <string name="long_orders_null">该患者暂无长期医嘱</string>
+    <string name="temp_orders">\n临时医嘱\n</string>
+    <string name="long_orders">长期医嘱\n</string>
+
+    <!-- 透析参数 -->
+    <string name="column_time">记录时间</string>
+    <string name="column_ssy">收缩压</string>
+    <string name="column_szy">舒张压</string>
+    <string name="column_jmy">静脉压</string>
+    <string name="column_dmy">动脉压</string>
+    <string name="column_kmy">跨膜压</string>
+    <string name="column_mb">脉搏</string>
+    <string name="column_hx">呼吸</string>
+    <string name="read_xymb">读取血压脉搏</string>
+
+    <!-- 透析总结 -->
+    <string name="dialysis_summary_use_model">使用模板</string>
+    <string name="dialysis_summary_add_model">添加到模板</string>
+    <string name="title_activity_dialysis_param_edit">编辑条目</string>
+    <string name="title_activity_config">设置</string>
+    <string name="dia_s_jlsj">记录时间</string>
+    <string name="dia_s_jmy">静脉压</string>
+    <string name="dia_s_dmy">动脉压</string>
+    <string name="dia_s_ddd">电导度ms/cm</string>
+    <string name="dia_s_xll">血流量ml/min</string>
+    <string name="dia_s_cll">超滤率ml/h</string>
+    <string name="dia_s_zxqcl">在线清除率mL/min</string>
+    <string name="dia_s_tw">体温℃</string>
+    <string name="dia_s_ssy">收缩压mmHg</string>
+    <string name="dia_s_jlhs">记录护士</string>
+    <string name="dia_s_lsyy">临时用药</string>
+    <string name="dia_s_lcbx">临床表现</string>
+    <string name="dia_s_zl">治疗</string>
+    <string name="dia_s_zzjcl">症状及处理</string>
+    <string name="dia_s_kmy">跨膜压mmHg</string>
+    <string name="dia_s_zhl">置换量ml/min</string>
+    <string name="dia_s_txyll">透析液流量ml/h</string>
+    <string name="dia_s_knj">肝素追加</string>
+    <string name="dia_s_hx">呼吸(次/分)</string>
+    <string name="dia_s_mb">脉搏(次/分)</string>
+    <string name="dia_s_xl">心率(次/分)</string>
+    <string name="dia_s_szy">舒张压mmHg</string>
+    <string name="dia_s_sx">渗血</string>
+    <string name="dia_s_ht">滑脱</string>
+    <string name="dia_s_input_def">平安离室。</string>
+
+    <string name="estimate_type">评估类型</string>
+    <string name="estimate_vas">导管评估</string>
+    <string name="estimate_fistula">内瘘评估</string>
+    <string name="blood_flow_amount">血流量ml/min</string>
+    <string name="displacement_flow_amount">置换液流量ml/h</string>
+    <string name="potassium_ion">钾mmol/L</string>
+    <string name="sodium">钠mmol/L</string>
+    <string name="calcium">钙mmol/L</string>
+    <string name="bicarbonate">碳酸氢根mmol/L</string>
+    <string name="flows">流量ml/min</string>
+    <string name="dialysis_dic">透析器凝血</string>
+    <string name="blood_group">血型/RH</string>
+    <string name="blood_inamount">输血量ml</string>
+    <string name="blood_point">引血端</string>
+    <string name="part">局部</string>
+    <string name="clean">清洁</string>
+    <string name="inflamed">红肿</string>
+    <string name="bruised">瘀斑</string>
+    <string name="thrill">内瘘震颤</string>
+    <string name="strong">强</string>
+    <string name="weak">弱</string>
+    <string name="bruit">杂音</string>
+    <string name="give">弹性</string>
+    <string name="nice">良</string>
+    <string name="nodes">条索硬结</string>
+    <string name="other">弹性其他</string>
+    <string name="give_other">弹性其他</string>
+    <string name="allergy">过敏</string>
+    <string name="plaster">创可贴</string>
+    <string name="adhesive">胶布</string>
+    <string name="comfort">舒适</string>
+    <string name="uncomfort">不适</string>
+    <string name="severe_uncomfort">重度不适</string>
+    <string name="a">A</string>
+    <string name="v">V</string>
+    <string name="zrys">责任医生</string>
+    <string name="cchs">穿刺护士</string>
+    <string name="zrhs">责任护士</string>
+    <string name="zlhs">治疗护士</string>
+    <string name="hdhs">核对护士</string>
+    <string name="comm_has">有</string>
+    <string name="comm_hasnot">无</string>
+    <string name="comm_lianghao">良好</string>
+    <string name="comm_qianjia">欠佳</string>
+    <string name="comm_xiexian">/</string>
+    
+    <!--消息-->
+    <string name="pre_key_message_sound">message_sound</string>
+    <string name="pre_key_message_interva">message_interva</string>
+
+    <string name="tv_black_prompt">请选择</string>
+    <string name="take_camera">拍照</string>
+    <string name="take_photo">相册</string>
+    <string name="tv_cancel">取消</string>
+
+    <string name="request_permission">申请权限</string>
+    <string name="need_write_setting">应用需要打开修改系统设置权限</string>
+    <string name="need_unknown_app_source">应用需要打开未知来源权限</string>
+    <string name="lack_permission_msg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+</resources>

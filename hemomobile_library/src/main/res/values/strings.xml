@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="app_name">MdsdLibrary</string>
+    <string name="comm_search">查询</string>
+    <string name="comm_add">新增</string>
+    <string name="comm_prompt">提示</string>
+    <string name="comm_delete">删除</string>
+    <string name="comm_confirm">确定</string>
+    <string name="comm_modify">修改</string>
+    <string name="comm_cancel">取消</string>
+    <string name="comm_no_record">暂无记录</string>
+    <string name="comm_yes">是</string>
+    <string name="comm_no">否</string>
+    <string name="comm_save">保存</string>
+    <string name="comm_refresh">刷新</string>
+    <string name="multi_hint">请选择输入</string>
+    <string name="multi_btn">▽</string>
+    
+    <integer-array name="google_colors">
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+    </integer-array>
+    <string name="scan_tips">请将取景框对准二维码,即可自动扫描</string>
+    <string name="scan_open_lights">开灯</string>
+    <string name="scan_close_lights">关灯</string>
+    <string name="scan_cancel">取消</string>
+
+</resources>

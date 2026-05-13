@@ -1,0 +1,186 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+
+
+
+
+
+
+    -->
+    <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+
+
+
+
+
+        -->
+    </style>
+    
+    <style name="appTheme" parent="android:Theme.Light" >
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:actionBarStyle">@style/CustomActionBar</item>
+        <item name="android:windowBackground">@color/app_bg</item>
+        <item name="android:textSize">@dimen/textSize_def</item>
+        <item name="android:spinnerDropDownItemStyle">@style/CustomSpinnerDropDownItemStyle</item>
+        <item name="android:radioButtonStyle">@style/CustomRdioButtonStyle</item>
+        <!-- 去除actionbar下的默认阴影 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:homeAsUpIndicator">@drawable/bar_back</item>
+    </style>
+
+    <!-- 自定义actionbar样式 -->
+    <style name="CustomActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/app_green_color</item>
+        <item name="android:titleTextStyle">@style/CustomActionBarTitleText</item>
+    </style>
+
+    <style name="CustomActionBarTitleText"  parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CustomSpinnerDropDownItemStyle" parent="@android:style/Widget.Holo.Light.DropDownItem.Spinner">
+        <item name="android:background">@drawable/spinner_dropdown_item_selector</item>
+        <item name="android:textColor">@drawable/spinner_dropdown_item_text_selector</item>
+    </style>
+
+    <style name="CustomRdioButtonStyle" parent="@android:style/Widget.Holo.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/radio_button_selector</item>
+    </style>
+
+    <!-- custom    style -->
+    <style name="ButtonDef">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/button_def_height</item>
+    </style>
+
+    <style name="ButtonDefFontWhite" parent="ButtonDef">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonDefGreen" parent="ButtonDefFontWhite">
+        <item name="android:background">@color/app_green_color</item>
+    </style>
+
+    <style name="ButtonDefGray" parent="ButtonDefFontWhite">
+        <item name="android:background">@color/button_gray</item>
+    </style>
+
+    <style name="ButtonDefGreenR" parent="ButtonDefFontWhite">
+        <item name="android:background">@drawable/button_green_bg_r</item>
+    </style>
+
+    <style name="TextViewDef">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextViewDefHeight" parent="TextViewDef">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/editext_def_height</item>
+        <item name="android:paddingLeft">@dimen/margin_small</item>
+        <item name="android:paddingRight">@dimen/margin_small</item>
+    </style>
+
+    <style name="TextViewDefHeightBg" parent="TextViewDefHeight">
+        <item name="android:background">@drawable/textview_bg_selector</item>
+    </style>
+
+    <style name="EditTextDef" parent="TextViewDefHeight">
+        <item name="android:background">@drawable/editext_bg</item>
+    </style>
+    
+    <style name="EditTextDefNumberDecimal" parent="EditTextDef">
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="SpinnerDef">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/editext_def_height</item>
+        <item name="android:paddingLeft">@dimen/margin_small</item>
+        <item name="android:paddingRight">@dimen/margin_small</item>
+        <item name="android:background">@drawable/spinner_bg_selector</item>
+    </style>
+
+    <style name="PopwinAnimDef">
+        <item name="android:windowEnterAnimation">@anim/translate_show_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/translate_disappear_to_bottom</item>
+    </style>
+
+    <style name="PagerSlidingTabStripDef">
+        <item name="android:layout_height">@dimen/pager_tab_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/pager_tab_bg</item>
+        <item name="com.mdsd.docare.hemodialysis.app:pstsDividerColor">@color/transparent</item>
+        <item name="com.mdsd.docare.hemodialysis.app:pstsIndicatorColor">@color/app_green_color</item>
+        <item name="com.mdsd.docare.hemodialysis.app:pstsIndicatorHeight">3dp</item>
+        <item name="com.mdsd.docare.hemodialysis.app:pstsShouldExpand">true</item>
+        <item name="com.mdsd.docare.hemodialysis.app:pstsUnderlineHeight">0dp</item>
+        <item name="com.mdsd.docare.hemodialysis.app:pstsTabPaddingLeftRight">0dp</item>
+    </style>
+
+    <style name="FormItemDef">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="com.mdsd.docare.hemodialysis.app:titleSize">@dimen/textSize_def</item>
+    </style>
+
+    <style name="FormItemDefTitleNormal" parent="FormItemDef">
+        <item name="com.mdsd.docare.hemodialysis.app:titleWidth">@dimen/txcf_form_item_title_width</item>
+    </style>
+
+    <style name="FormItemDefTitleBig" parent="FormItemDef">
+        <item name="com.mdsd.docare.hemodialysis.app:titleWidth">@dimen/pg_form_item_title_width</item>
+    </style>
+
+    <style name="FormItemDefMargin" parent="FormItemDef">
+        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+    </style>
+
+    <style name="FormItemDefTitleNormalMargin" parent="FormItemDefMargin">
+        <item name="com.mdsd.docare.hemodialysis.app:titleWidth">@dimen/txcf_form_item_title_width</item>
+    </style>
+
+    <style name="FormItemDefTitleBigMargin" parent="FormItemDefMargin">
+        <item name="com.mdsd.docare.hemodialysis.app:titleWidth">@dimen/pg_form_item_title_width</item>
+    </style>
+
+    <style name="RadioButtonDef">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ButtonDefAdd" parent="ButtonDef">
+        <item name="android:background">@drawable/pager_tab_bg</item>
+        <item name="android:drawableLeft">@drawable/ic_add</item>
+        <item name="android:drawablePadding">@dimen/margin_small</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:paddingLeft">@dimen/margin_normal</item>
+        <item name="android:paddingRight">@dimen/margin_normal</item>
+    </style>
+
+    <style name="anim_menu_bottombar">
+        <item name="android:windowEnterAnimation">@anim/menu_bottombar_in</item>
+        <item name="android:windowExitAnimation">@anim/menu_bottombar_out</item>
+    </style>
+
+</resources>

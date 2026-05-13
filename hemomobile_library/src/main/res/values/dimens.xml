@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- actionbar 尺寸配置 -->
+
+    <dimen name="actionbar_default_height">48dp</dimen>
+    <dimen name="action_bar_title_text_size">18sp</dimen>
+    <dimen name="action_bar_text_size">16sp</dimen>
+    <dimen name="action_button_min_width">50dip</dimen>
+
+    <!-- The default gap between components in a layout. -->
+    <dimen name="default_gap">16dip</dimen>
+    <dimen name="fallback_action_bar_height">48dp</dimen>
+
+    <!-- The default gap between components in a layout. -->
+    <dimen name="progressbar_def_width">30dp</dimen>
+    <dimen name="progressbar_def_height">30dp</dimen>
+    <dimen name="footv_view_def_padding">16dp</dimen>
+    
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <dimen name="shadow_size">8dip</dimen>
+    <dimen name="radio_button_conner_radius">5dp</dimen>
+</resources>

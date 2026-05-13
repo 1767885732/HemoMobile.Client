@@ -1,0 +1,1139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.mdsd.docare.hemodialysis.app"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_normal" >
+        
+        <!-- 内瘘震颤 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_basket_zc"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/thrill"-->
+            <!--app:titleSize="@dimen/font_size"-->
+            <!--android:visibility="gone" >-->
+            <!---->
+	            <!--<CheckBox-->
+		             <!--android:id="@+id/cure_radiobtn_zc_s"-->
+		             <!--style="@style/RadioButtonDef"-->
+		             <!--android:scaleX="1.5"-->
+		             <!--android:scaleY="1.5"-->
+		             <!--android:layout_marginLeft="10dp"-->
+		             <!--android:paddingLeft="-5dp"-->
+		             <!--android:tag="CheckBox.in_Basket_Tremor.0"-->
+		             <!--android:text="@string/strong" />-->
+	<!---->
+	        	<!--<CheckBox-->
+		             <!--android:id="@+id/cure_radiobtn_zc_f"-->
+		             <!--style="@style/RadioButtonDef"-->
+		             <!--android:scaleX="1.5"-->
+		             <!--android:scaleY="1.5"-->
+		             <!--android:layout_marginLeft="25dp"-->
+		             <!--android:paddingLeft="-5dp"-->
+		             <!--android:tag="CheckBox.in_Basket_Tremor.1"-->
+		             <!--android:text="@string/weak" />-->
+	        	<!---->
+	        	<!--<CheckBox-->
+		             <!--android:id="@+id/cure_radiobtn_zc_n"-->
+		             <!--style="@style/RadioButtonDef"-->
+		             <!--android:scaleX="1.5"-->
+		             <!--android:scaleY="1.5"-->
+		             <!--android:layout_marginLeft="25dp"-->
+		             <!--android:paddingLeft="-5dp"-->
+		             <!--android:tag="CheckBox.in_Basket_Tremor.2"-->
+		             <!--android:text="@string/comm_hasnot" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 杂音 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_basket_zy"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/bruit"-->
+            <!--app:titleSize="@dimen/font_size"-->
+            <!--android:visibility="gone" >-->
+                <!---->
+	            <!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_zy_s"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="10dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Noise.0"-->
+		           <!--android:text="@string/strong" />-->
+	<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_zy_f"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Noise.1"-->
+		           <!--android:text="@string/weak" />-->
+	     	<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_zy_n"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Noise.2"-->
+		           <!--android:text="@string/comm_hasnot" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 血流情况 -->
+        <!-- <com.mdsd.library.ui.FormItem
+            android:id="@+id/cure_formItem_basket_xlqk"
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_xlqk"
+            app:titleSize="@dimen/font_size"
+            android:visibility="gone" >
+            
+	            <CheckBox
+		           android:id="@+id/cure_radiobtn_xlqk_s"
+		           style="@style/RadioButtonDef"
+		           android:scaleX="1.5"
+		           android:scaleY="1.5"
+		           android:layout_marginLeft="10dp"
+		           android:paddingLeft="-5dp"
+		           android:tag="CheckBox.in_Basket_Clean.1"
+		           android:text="@string/comm_lianghao" />
+		
+		     	<CheckBox
+		           android:id="@+id/cure_radiobtn_xlqk_f"
+		           style="@style/RadioButtonDef"
+		           android:scaleX="1.5"
+		           android:scaleY="1.5"
+		           android:layout_marginLeft="25dp"
+		           android:paddingLeft="-5dp"
+		           android:tag="CheckBox.in_Basket_Clean.0"
+		           android:text="@string/comm_qianjia" />
+        </com.mdsd.library.ui.FormItem> -->
+        <!-- 渗液 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_basket_sy"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_sy"-->
+            <!--app:titleSize="@dimen/font_size"-->
+            <!--android:visibility="gone" >-->
+            <!---->
+	            <!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_sy_s"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="10dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Ecchymosis.0"-->
+		           <!--android:text="@string/comm_has" />-->
+		<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_sy_f"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Ecchymosis.1"-->
+		           <!--android:text="@string/comm_hasnot" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 血栓 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_basket_xs"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_xs"-->
+            <!--app:titleSize="@dimen/font_size"-->
+            <!--android:visibility="gone" >-->
+            <!---->
+	            <!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_xs_s"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="10dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Vascular_Elasticity.0"-->
+		           <!--android:text="@string/comm_has" />-->
+		<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_xs_f"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Vascular_Elasticity.1"-->
+		           <!--android:text="@string/comm_hasnot" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 红肿 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_basket_hz"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/inflamed"-->
+            <!--app:titleSize="@dimen/font_size"-->
+            <!--android:visibility="gone" >-->
+            <!---->
+	            <!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_hz_s"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="10dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Red_Hot.0"-->
+		           <!--android:text="@string/comm_has" />-->
+		<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_hz_f"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.in_Basket_Red_Hot.1"-->
+		           <!--android:text="@string/comm_hasnot" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 弹性 -->
+        <!-- <com.mdsd.library.ui.FormItem
+            android:id="@+id/cure_formItem_basket_tx"
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/give" >
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_tx_l"
+                    style="@style/RadioButtonDef"
+                    android:tag="RadioButton.in_Basket_Vascular_Elasticity.1"
+                    android:text="@string/nice" />
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_tx_yj"
+                    style="@style/RadioButtonDef"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:tag="RadioButton.in_Basket_Vascular_Elasticity.0"
+                    android:text="@string/nodes" />
+                
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_tx_qt"
+                    style="@style/RadioButtonDef"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:tag="RadioButton.in_Basket_Vascular_Elasticity.2"
+                    android:text="@string/other" />
+            </RadioGroup>
+        </com.mdsd.library.ui.FormItem> -->
+        <!-- <com.mdsd.library.ui.FormItem
+            android:id="@+id/cure_formItem_tx_qt"
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/give_other" >
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_tx_qt"
+                style="@style/EditTextDef"
+                android:tag="TextView.in_Basket_Vascular_Other" />
+        </com.mdsd.library.ui.FormItem> -->
+        <!-- 过敏 -->
+        <!-- <com.mdsd.library.ui.FormItem
+            android:id="@+id/cure_formItem_basket_gm"
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/allergy" >
+            
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_gm_s"
+                    style="@style/RadioButtonDef"
+                    android:tag="RadioButton.in_Basket_Wound_Allergy.1"
+                    android:text="@string/comm_yes" />
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_gm_f"
+                    style="@style/RadioButtonDef"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:tag="RadioButton.in_Basket_Wound_Allergy.0"
+                    android:text="@string/comm_no" />
+            </RadioGroup>
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!-- 固定牢固 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_vascular_gdgl"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_gdlg"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--&lt;!&ndash; <RadioGroup-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_gdgl_s"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Firm.0"-->
+                    <!--android:text="@string/comm_yes" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_gdgl_f"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="25dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Firm.1"-->
+                    <!--android:text="@string/comm_no" />-->
+            <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+		<!-- 滑脱 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+           <!--android:id="@+id/cure_formItem_vascular_ht"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_ht"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--&lt;!&ndash; <RadioGroup-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_ht_s"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Glide.0"-->
+                    <!--android:text="@string/comm_has" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_ht_f"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="25dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Glide.1"-->
+                    <!--android:text="@string/comm_hasnot" />-->
+            <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 血流情况 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_vascular_xlqk"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_xlqk"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--&lt;!&ndash; <RadioGroup-->
+                <!--android:id="@+id/zhouclr"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_xlqk2_s"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Blood.0"-->
+                    <!--android:text="@string/comm_lianghao" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_xlqk2_f"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="25dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Blood.1"-->
+                    <!--android:text="@string/comm_qianjia" />-->
+            <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+		<!-- 穿刺局部红肿 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_vascular_ccdjbhz"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_ccdjbhz"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--&lt;!&ndash; <RadioGroup-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_ccdjbhz_s"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Swelling.0"-->
+                    <!--android:text="@string/comm_has" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_ccdjbhz_f"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="25dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Swelling.1"-->
+                    <!--android:text="@string/comm_hasnot" />-->
+            <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+		<!-- 引血端 -->
+        <!-- <com.mdsd.library.ui.FormItem
+            android:id="@+id/cure_formItem_vascular_yxd"
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/blood_point" >
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_yxd_s"
+                    style="@style/RadioButtonDef"
+                    android:tag="RadioButton.blood_Up.1"
+                    android:text="@string/a" />
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_yxd_f"
+                    style="@style/RadioButtonDef"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:tag="RadioButton.blood_Up.0"
+                    android:text="@string/v" />
+            </RadioGroup>
+        </com.mdsd.library.ui.FormItem> -->
+        <!-- 渗血 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_vascular_sx"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_sx"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--&lt;!&ndash; <RadioGroup-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_sx_s"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Errhyisis.0"-->
+                    <!--android:text="@string/comm_has" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_sx_f"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="25dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Errhyisis.1"-->
+                    <!--android:text="@string/comm_hasnot" />-->
+            <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 渗液 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_vascular_sy"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_sy"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/cure_radiobtn_sy2_s"-->
+                <!--style="@style/RadioButtonDef"-->
+                <!--android:scaleX="1.5"-->
+                <!--android:scaleY="1.5"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:paddingLeft="-5dp"-->
+                <!--android:tag="CheckBox.in_Basket_Plaster_Allergy.0"-->
+                <!--android:text="@string/comm_has" />-->
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/cure_radiobtn_sy2_f"-->
+                <!--style="@style/RadioButtonDef"-->
+                <!--android:scaleX="1.5"-->
+                <!--android:scaleY="1.5"-->
+                <!--android:layout_marginLeft="25dp"-->
+                <!--android:paddingLeft="-5dp"-->
+                <!--android:tag="CheckBox.in_Basket_Plaster_Allergy.1"-->
+                <!--android:text="@string/comm_hasnot" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+		<!-- 血栓 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_vascular_xs"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_xs"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--&lt;!&ndash; <RadioGroup-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_xs2_s"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Thrombus.0"-->
+                    <!--android:text="@string/comm_has" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_xs2_f"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="25dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Thrombus.1"-->
+                    <!--android:text="@string/comm_hasnot" />-->
+            <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 血流感染 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_vascular_xlgr"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_xlgr"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--&lt;!&ndash; <RadioGroup-->
+                <!--android:id="@+id/zhouclr"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal" > &ndash;&gt;-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_xlgr_s"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Blood_Infect.0"-->
+                    <!--android:text="@string/comm_yes" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cure_radiobtn_xlgr_f"-->
+                    <!--style="@style/RadioButtonDef"-->
+                    <!--android:scaleX="1.5"-->
+                    <!--android:scaleY="1.5"-->
+                    <!--android:layout_marginLeft="25dp"-->
+                    <!--android:paddingLeft="-5dp"-->
+                    <!--android:tag="CheckBox.vascular_Access_Blood_Infect.1"-->
+                    <!--android:text="@string/comm_no" />-->
+            <!--&lt;!&ndash; </RadioGroup> &ndash;&gt;-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        <!-- 舒适度 -->
+        <!-- <com.mdsd.library.ui.FormItem
+            android:id="@+id/cure_formItem_subjective_comfort"
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_ssd" >
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_ss"
+                    style="@style/RadioButtonDef"
+                    android:tag="RadioButton.subjective_Comfort.0"
+                    android:text="@string/comfort" />
+
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_bs"
+                    style="@style/RadioButtonDef"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:tag="RadioButton.subjective_Comfort.1"
+                    android:text="@string/uncomfort" />
+                
+                <RadioButton
+                    android:id="@+id/cure_radiobtn_zdbs"
+                    style="@style/RadioButtonDef"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:tag="RadioButton.subjective_Comfort.2"
+                    android:text="@string/severe_uncomfort" />
+            </RadioGroup>
+        </com.mdsd.library.ui.FormItem> -->
+
+		<!-- 实际治疗时间 -->
+
+		<!--<com.mdsd.library.ui.FormItem-->
+			<!--style="@style/FormItemDefTitleNormalMargin"-->
+			<!--app:itemTitle="@string/cure_pg_sjzlsj"-->
+			<!--app:titleSize="@dimen/font_size" >-->
+
+			<!--<com.mdsd.library.ui.ClearEditText-->
+				<!--android:id="@+id/cure_ed_sjzlsj"-->
+				<!--style="@style/EditTextDef"-->
+				<!--android:layout_weight="1"-->
+				<!--android:inputType="number|numberDecimal"-->
+				<!--android:tag="TextView.actual_Cleanup_Hour"-->
+				<!--android:textSize="@dimen/font_size" />-->
+
+			<!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/comm_hour" android:textSize="@dimen/font_size" />-->
+
+			<!--<com.mdsd.library.ui.ClearEditText-->
+				<!--android:id="@+id/cure_ed_sjzlsjfz"-->
+				<!--style="@style/EditTextDef"-->
+				<!--android:layout_weight="1"-->
+				<!--android:inputType="number|numberDecimal"-->
+				<!--android:tag="TextView.actual_Cleanup_Minute"-->
+				<!--android:textSize="@dimen/font_size" />-->
+
+			<!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/comm_min" android:textSize="@dimen/font_size" />-->
+		<!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_pg_gtz"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_gtz"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.dry_Weight"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_pg_ywlyz"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_ywlyz"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.dry_Weight_Tag"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cure_pg_gtzbz" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_gtzbz"
+                style="@style/EditTextDef"
+                android:inputType="text"
+                android:tag="TextView.dry_Weight_Tag" />
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_txqtz"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_txqtz"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.before_Dry_Weight"
+                android:textSize="@dimen/font_size" />
+            
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_txqwc"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="text"-->
+                <!--android:textSize="@dimen/font_size"-->
+				<!--android:enabled="false"-->
+                <!--android:visibility="gone" />-->
+        </com.mdsd.library.ui.FormItem>
+        
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_tqxy"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_tqssy"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:layout_weight="1"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.before_Systolic_Pressure"-->
+                <!--android:textSize="@dimen/font_size" />-->
+            <!---->
+            <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/comm_xiexian" android:textSize="@dimen/font_size" />-->
+            <!---->
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_tqszy"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:layout_weight="1"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.before_Diastolic_Pressure"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_yjts"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_yjts"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:enabled="false"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.ufr"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_sjts"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_sjts"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.dry_Water_Value"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_txhtz"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_txhtz"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.after_Dry_Weight"
+                android:textSize="@dimen/font_size" />
+            
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_txhwc"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="text"-->
+                <!--android:textSize="@dimen/font_size"-->
+                <!--android:enabled="false"-->
+                <!--android:visibility="gone" />-->
+        </com.mdsd.library.ui.FormItem>
+
+		<com.mdsd.library.ui.FormItem
+			style="@style/FormItemDefTitleBigMargin"
+			app:itemTitle="@string/cure_pg_sctxhtz"
+			app:titleSize="@dimen/font_size" >
+
+			<com.mdsd.library.ui.ClearEditText
+				android:id="@+id/cure_ed_sctxhtz"
+				style="@style/EditTextDef"
+				android:inputType="number|numberDecimal"
+				android:tag="TextView.last_Time_Dry_Weight"
+				android:textSize="@dimen/font_size" />
+		</com.mdsd.library.ui.FormItem>
+
+		<!--<com.mdsd.library.ui.FormItem-->
+			<!--style="@style/FormItemDefTitleNormalMargin"-->
+			<!--app:itemTitle="@string/cure_pg_sfwc"-->
+			<!--app:titleSize="@dimen/font_size" >-->
+
+			<!--<CheckBox-->
+				<!--android:id="@+id/cure_radiobtn_thwc"-->
+				<!--style="@style/RadioButtonDef"-->
+				<!--android:scaleX="1.5"-->
+				<!--android:scaleY="1.5"-->
+				<!--android:layout_marginLeft="10dp"-->
+				<!--android:paddingLeft="-5dp"-->
+				<!--android:tag="CheckBox.in_Bed.1"-->
+				<!--android:text="@string/cure_pg_thwc" />-->
+		<!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_sctxhtz"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_sctxhtz"
+                style="@style/EditTextDef"
+                android:enabled="false"
+                android:inputType="phone"
+                android:textSize="@dimen/font_size" />
+
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_thxy"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_thssy"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:layout_weight="1"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.after_Systolic_Pressure"-->
+                <!--android:textSize="@dimen/font_size" />-->
+            <!---->
+            <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/comm_xiexian" android:textSize="@dimen/font_size" />-->
+            <!---->
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_thszy"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:layout_weight="1"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.after_Diastolic_Pressure"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 透后体温 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_pg_thtw"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_thtw"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.after_Temperature"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 透后呼吸 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_pg_thhx"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_thhx"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.afterbr"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 透后脉搏 -->
+
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/cure_pg_thmb"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<com.mdsd.library.ui.ClearEditText-->
+                <!--android:id="@+id/cure_ed_thmb"-->
+                <!--style="@style/EditTextDef"-->
+                <!--android:inputType="number|numberDecimal"-->
+                <!--android:tag="TextView.after_BP"-->
+                <!--android:textSize="@dimen/font_size" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <!-- 透析器凝血 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--android:id="@+id/cure_formItem_basket_txqnx"-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/dialysis_dic"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+            <!---->
+	            <!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_txqnx_0"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="10dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.coagulation_In_Dialyser.0"-->
+		           <!--android:text="@string/cure_pg_grade0" />-->
+		<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_txqnx_1"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.coagulation_In_Dialyser.1"-->
+		           <!--android:text="@string/cure_pg_grade1" />-->
+		     	<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_txqnx_2"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.coagulation_In_Dialyser.2"-->
+		           <!--android:text="@string/cure_pg_grade2" />-->
+		     	<!---->
+		     	<!--<CheckBox-->
+		           <!--android:id="@+id/cure_radiobtn_txqnx_3"-->
+		           <!--style="@style/RadioButtonDef"-->
+		           <!--android:scaleX="1.5"-->
+		           <!--android:scaleY="1.5"-->
+		           <!--android:layout_marginLeft="25dp"-->
+		           <!--android:paddingLeft="-5dp"-->
+		           <!--android:tag="CheckBox.coagulation_In_Dialyser.3"-->
+		           <!--android:text="@string/cure_pg_grade3" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_zhyzl"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_zhyzl"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.filtration_Displacement_Liquid"
+                android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem>
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_lcyzl"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_lcyzl"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.filtration_Percolate"
+                android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem>
+        
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_xjzl"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_xjzl"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.displacement_Liquid"
+                android:textSize="@dimen/font_size" /> 
+        </com.mdsd.library.ui.FormItem>
+
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_lcxjzl"
+            app:titleSize="@dimen/font_size" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_ed_lcxjzl"
+                style="@style/EditTextDef"
+                android:inputType="number|numberDecimal"
+                android:tag="TextView.percolate"
+                android:textSize="@dimen/font_size" />
+        </com.mdsd.library.ui.FormItem>
+        
+        <!-- 置换方式 -->
+
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormal"
+            app:itemTitle="@string/cure_pg_zhfs"
+            app:titleSize="@dimen/font_size" >
+            
+            <Spinner
+                android:id="@+id/cure_spinner_zhfs"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.displacement_Mode" />
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!-- 置换液配方 -->
+
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormal"
+            app:itemTitle="@string/cure_pg_zhypf"
+            app:titleSize="@dimen/font_size" >
+            
+            <Spinner
+                android:id="@+id/cure_spinner_zhypf"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.displacement_Recipe" />
+        </com.mdsd.library.ui.FormItem> -->
+
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/dialysis_dic" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_dialysis_dic"
+                style="@style/EditTextDef"
+                android:tag="TextView.coagulation_In_Dialyser" />
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/blood_group" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_blood_group"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.blood_Type" />
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/blood_inamount" >
+
+            <com.mdsd.library.ui.ClearEditText
+                android:id="@+id/cure_blood_inamount"
+                style="@style/EditTextDef"
+                android:inputType="phone"
+                android:tag="TextView.blood_Transfusion" />
+        </com.mdsd.library.ui.FormItem> -->
+        
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_zhypftstz"
+            app:titleSize="@dimen/font_size" >
+            </com.mdsd.library.ui.FormItem>
+            
+            <EditText
+            android:id="@+id/cure_et_special_Adjust"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/radius_stroke_white_bg"
+            android:gravity="top|left"
+            android:inputType="none"
+            android:padding="@dimen/margin_small"
+            android:textSize="@dimen/font_size" /> -->
+            
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_knjsy"
+            app:titleSize="@dimen/font_size" >
+            </com.mdsd.library.ui.FormItem>
+            
+            <EditText
+            android:id="@+id/cure_et_anticoagulant_Use"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/radius_stroke_white_bg"
+            android:gravity="top|left"
+            android:inputType="none"
+            android:padding="@dimen/margin_small"
+            android:textSize="@dimen/font_size" /> -->
+            
+        <!-- <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleBigMargin"
+            app:itemTitle="@string/cure_pg_tsjdsx"
+            app:titleSize="@dimen/font_size" >
+            </com.mdsd.library.ui.FormItem>
+            
+            <EditText
+            android:id="@+id/cure_et_special_Matter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/radius_stroke_white_bg"
+            android:gravity="top|left"
+            android:inputType="none"
+            android:padding="@dimen/margin_small"
+            android:textSize="@dimen/font_size" /> -->
+        
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleBigMargin"-->
+            <!--app:itemTitle="@string/cure_pg_ysjlyz"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+            <!--</com.mdsd.library.ui.FormItem>-->
+            <!---->
+            <!--<EditText-->
+            <!--android:id="@+id/cure_et_remark"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/radius_stroke_white_bg"-->
+            <!--android:gravity="top|left"-->
+            <!--android:inputType="none"-->
+            <!--android:padding="@dimen/margin_small"-->
+            <!--android:textSize="@dimen/font_size" />-->
+        
+        <!-- 责任医生 -->
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/zrys"
+            app:titleSize="@dimen/font_size" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_zrys"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.primary_Doctor" />
+        </com.mdsd.library.ui.FormItem>
+        
+        <!-- 责任护士 -->
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/zrhs"
+            app:titleSize="@dimen/font_size" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_zlhs"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.primary_Nurse" />
+        </com.mdsd.library.ui.FormItem>
+        
+        <!-- 穿刺护士 -->
+        <com.mdsd.library.ui.FormItem
+            style="@style/FormItemDefTitleNormalMargin"
+            app:itemTitle="@string/cchs"
+            app:titleSize="@dimen/font_size" >
+
+            <Spinner
+                android:id="@+id/cure_spinner_cchs"
+                style="@style/SpinnerDef"
+                android:tag="Spinner.puncture_Nurse" />
+        </com.mdsd.library.ui.FormItem>
+        
+        <!-- 核对护士 -->
+        <!--<com.mdsd.library.ui.FormItem-->
+            <!--style="@style/FormItemDefTitleNormalMargin"-->
+            <!--app:itemTitle="@string/hdhs"-->
+            <!--app:titleSize="@dimen/font_size" >-->
+
+            <!--<Spinner-->
+                <!--android:id="@+id/cure_spinner_hdhs"-->
+                <!--style="@style/SpinnerDef"-->
+                <!--android:tag="Spinner.check_Nurse" />-->
+        <!--</com.mdsd.library.ui.FormItem>-->
+        
+        <com.mdsd.library.ui.autoBgButton.AutoBgButton
+            android:id="@+id/cure_btn_save"
+            style="@style/ButtonDefGreen"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/cure_pg_save" />
+    </LinearLayout>
+
+</ScrollView>
