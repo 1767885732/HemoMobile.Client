@@ -1,0 +1,59 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "血透移动系统",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/settings/index",
+      "style": {
+        "navigationBarTitleText": "设置"
+      }
+    },
+    {
+      "path": "pages/search/index",
+      "style": {
+        "navigationBarTitleText": "血透信息搜索"
+      }
+    },
+    {
+      "path": "pages/patient-list/index",
+      "style": {
+        "navigationBarTitleText": "血透患者选择"
+      }
+    },
+    {
+      "path": "pages/patient-detail/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/dialysis-param/index",
+      "style": {
+        "navigationBarTitleText": "编辑条目"
+      }
+    },
+    {
+      "path": "pages/orders/index",
+      "style": {
+        "navigationBarTitleText": "临时医嘱"
+      }
+    },
+    {
+      "path": "pages/summary/index",
+      "style": {
+        "navigationBarTitleText": "透析小结"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "血透移动系统",
+    "navigationBarBackgroundColor": "#4DB6AC",
+    "backgroundColor": "#F5F5F5"
+  }
+}

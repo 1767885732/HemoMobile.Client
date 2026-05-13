@@ -1,0 +1,1 @@
+<view class="settings-page data-v-cd16cfe4"><view class="settings-content data-v-cd16cfe4"><view class="tips-text data-v-cd16cfe4">温馨提示：设置完ip地址后，请直接按返回键</view><view class="ip-input-wrapper data-v-cd16cfe4"><input class="ip-input data-v-cd16cfe4" placeholder="请输入IP地址" type="text" value="{{a}}" bindinput="{{b}}"/></view></view></view>

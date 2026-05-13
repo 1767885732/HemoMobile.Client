@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/settings/index",
+    "pages/search/index",
+    "pages/patient-list/index",
+    "pages/patient-detail/index",
+    "pages/dialysis-param/index",
+    "pages/orders/index",
+    "pages/summary/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "血透移动系统",
+    "navigationBarBackgroundColor": "#4DB6AC",
+    "backgroundColor": "#F5F5F5"
+  },
+  "usingComponents": {}
+}
