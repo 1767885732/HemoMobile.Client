@@ -69,7 +69,7 @@ onMounted(() => {
   }
 })
 
-const handleLogin = () => {
+const handleLogin = async () => {
   if (!username.value) {
     uni.showToast({ title: '请输入用户名', icon: 'none' })
     return
@@ -79,8 +79,34 @@ const handleLogin = () => {
     return
   }
   
-  store.login(username.value, password.value)
-  uni.navigateTo({ url: '/pages/search/index' })
+  uni.showLoading({ title: '登录中...' })
+  
+  try {
+    const result = await store.login(username.value, password.value)
+    
+    if (result.success) {
+      uni.hideLoading()
+      uni.showToast({ 
+        title: result.message || '登录成功', 
+        icon: 'success' 
+      })
+      setTimeout(() => {
+        uni.navigateTo({ url: '/pages/search/index' })
+      }, 1500)
+    } else {
+      uni.hideLoading()
+      uni.showToast({ 
+        title: result.message || '登录失败，请检查账号密码', 
+        icon: 'none' 
+      })
+    }
+  } catch (error: any) {
+    uni.hideLoading()
+    uni.showToast({ 
+      title: error.message || '登录异常，请重试', 
+      icon: 'none' 
+    })
+  }
 }
 
 const goToSettings = () => {

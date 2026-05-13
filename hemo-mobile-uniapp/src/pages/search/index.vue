@@ -50,10 +50,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useAppStore } from '@/stores/app'
+import type { PatientSearchParam } from '@/utils/types'
+
+const store = useAppStore()
 
 const selectedDate = ref('2026-05-13')
 const selectedTimeSlot = ref('上午')
 const selectedRoom = ref('')
+const isSearching = ref(false)
 
 const showPicker = ref(false)
 const pickerTitle = ref('')
@@ -108,10 +113,64 @@ const selectPickerItem = (item: string) => {
   hidePicker()
 }
 
-const handleSearch = () => {
-  uni.navigateTo({
-    url: `/pages/patient-list/index?date=${selectedDate.value}&timeSlot=${selectedTimeSlot.value}&room=${selectedRoom.value}`
-  })
+const handleSearch = async () => {
+  if (!selectedRoom.value) {
+    uni.showToast({ title: '请选择透析室', icon: 'none' })
+    return
+  }
+
+  isSearching.value = true
+  uni.showLoading({ title: '搜索中...' })
+
+  try {
+    const searchParam: PatientSearchParam = {
+      date: selectedDate.value,
+      timeRangeType: selectedTimeSlot.value,
+      roomId: selectedRoom.value
+    }
+
+    const result = await store.fetchPatients(searchParam)
+
+    if (result.success) {
+      uni.hideLoading()
+      
+      if (result.data && result.data.length > 0) {
+        uni.showToast({ 
+          title: `找到 ${result.data.length} 位患者`, 
+          icon: 'success' 
+        })
+        setTimeout(() => {
+          uni.navigateTo({
+            url: `/pages/patient-list/index?date=${selectedDate.value}&timeSlot=${selectedTimeSlot.value}&room=${selectedRoom.value}`
+          })
+        }, 1500)
+      } else {
+        uni.showToast({ 
+          title: '未找到患者', 
+          icon: 'none' 
+        })
+        setTimeout(() => {
+          uni.navigateTo({
+            url: `/pages/patient-list/index?date=${selectedDate.value}&timeSlot=${selectedTimeSlot.value}&room=${selectedRoom.value}`
+          })
+        }, 1500)
+      }
+    } else {
+      uni.hideLoading()
+      uni.showToast({ 
+        title: result.message || '搜索失败', 
+        icon: 'none' 
+      })
+    }
+  } catch (error: any) {
+    uni.hideLoading()
+    uni.showToast({ 
+      title: error.message || '搜索异常，请重试', 
+      icon: 'none' 
+    })
+  } finally {
+    isSearching.value = false
+  }
 }
 </script>
 
