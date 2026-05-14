@@ -1,0 +1,92 @@
+<template>
+  <view class="radio-group" @click="handleClick">
+    <view
+      v-for="(option, index) in options"
+      :key="option.value"
+      class="radio-item"
+      @click.stop="selectOption(option)"
+    >
+      <view class="radio-circle" :class="{ active: value === option.value }">
+        <view v-if="value === option.value" class="radio-dot"></view>
+      </view>
+      <text class="radio-label">{{ option.label }}</text>
+    </view>
+  </view>
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+
+interface RadioOption {
+  value: string
+  label: string
+}
+
+const props = withDefaults(defineProps<{
+  modelValue: string
+  options: RadioOption[]
+  title?: string
+}>(), {
+  title: ''
+})
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
+
+const value = ref(props.modelValue)
+
+watch(() => props.modelValue, (newVal) => {
+  value.value = newVal
+})
+
+const selectOption = (option: RadioOption) => {
+  value.value = option.value
+  emit('update:modelValue', option.value)
+}
+
+const handleClick = () => {
+  // 点击整个区域
+}
+</script>
+
+<style lang="scss" scoped>
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-circle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $text-hint;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &.active {
+    border-color: $primary-color;
+  }
+}
+
+.radio-dot {
+  width: 10px;
+  height: 10px;
+  background-color: $primary-color;
+  border-radius: 50%;
+}
+
+.radio-label {
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+</style>

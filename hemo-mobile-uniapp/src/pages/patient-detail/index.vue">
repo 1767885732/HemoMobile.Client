@@ -1,0 +1,750 @@
+<template>
+  <view class="patient-detail-page">
+    <NavBar :title="patientName" showBack>
+      <template #right>
+        <text class="refresh-icon" @click="handleRefresh">↻</text>
+      </template>
+    </NavBar>
+
+    <view class="loading-mask" v-if="store.isLoading">
+      <view class="loading-content">
+        <text class="loading-text">加载中...</text>
+      </view>
+    </view>
+
+    <view class="page-content">
+      <view class="patient-header">
+        <view class="patient-info-card">
+          <view class="info-row">
+            <text class="info-label">透析号：</text>
+            <text class="info-value">{{ store.currentPatient?.HEMODIALYSIS_ID || '-' }}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">床位：</text>
+            <text class="info-value">{{ store.currentPatient?.BEDNAME || '-' }}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">治疗项目：</text>
+            <text class="info-value">{{ store.currentPatient?.PURIFICATION_MODE || '-' }}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">净化器：</text>
+            <text class="info-value">{{ store.currentPatient?.MODEL_NAME || '-' }}</text>
+          </view>
+        </view>
+        <view class="patient-status-badge" :class="getStatusClass(store.currentPatient?.STATUS)">
+          <text>{{ formatStatus(store.currentPatient?.STATUS) }}</text>
+        </view>
+      </view>
+
+      <view class="tabs-header">
+        <view
+          class="tab-item"
+          :class="{ active: activeTab === 'info' }"
+          @click="activeTab = 'info'"
+        >
+          <text>治疗信息</text>
+        </view>
+        <view
+          class="tab-item"
+          :class="{ active: activeTab === 'assessment' }"
+          @click="activeTab = 'assessment'"
+        >
+          <text>评估与治疗情况</text>
+        </view>
+      </view>
+
+      <view class="tab-content" v-show="activeTab === 'info'">
+        <scroll-view scroll-y class="scroll-content">
+          <!-- 基本信息 -->
+          <view class="form-section">
+            <view class="section-title">基本信息</view>
+            <view class="form-item">
+              <text class="form-label">治疗方式</text>
+              <PickerSelect 
+                v-model="cureInfoForm.purification_Mode" 
+                title="选择治疗方式" 
+                :options="purificationModeOptions"
+                placeholder="请选择治疗方式"
+              />
+            </view>
+            <view class="form-item">
+              <text class="form-label">治疗时间</text>
+              <view class="time-input-container">
+                <input class="form-input half" v-model="cureInfoForm.frequency_Hours" placeholder="小时" type="number" />
+                <text class="time-unit">小时</text>
+                <input class="form-input half" v-model="cureInfoForm.frequency_Minute" placeholder="分钟" type="number" />
+                <text class="time-unit">分钟</text>
+              </view>
+            </view>
+            <view class="form-item">
+              <text class="form-label">净化次数</text>
+              <input class="form-input" v-model="cureInfoForm.clean_Up_Times" placeholder="请输入净化次数" type="number" />
+            </view>
+            <view class="form-item">
+              <text class="form-label">血管通路</text>
+              <PickerSelect 
+                v-model="cureInfoForm.vascular_Access_Id" 
+                title="选择血管通路" 
+                :options="vascularAccessOptions"
+                placeholder="请选择血管通路"
+              />
+            </view>
+            <view class="form-item">
+              <text class="form-label">净化器类型</text>
+              <PickerSelect 
+                v-model="cureInfoForm.machine_Type" 
+                title="选择净化器类型" 
+                :options="purifierTypeOptions"
+                placeholder="请选择净化器类型"
+              />
+            </view>
+            <view class="form-item">
+              <text class="form-label">透析机型号</text>
+              <PickerSelect 
+                v-model="cureInfoForm.machine_Id" 
+                title="选择透析机型号" 
+                :options="dialyzerOptions"
+                placeholder="请选择透析机型号"
+              />
+            </view>
+            <view class="form-item">
+              <text class="form-label">透析膜</text>
+              <PickerSelect 
+                v-model="cureInfoForm.purifier_Name" 
+                title="选择透析膜" 
+                :options="dialyzerMembraneOptions"
+                placeholder="请选择透析膜"
+              />
+            </view>
+            <view class="form-item">
+              <text class="form-label">面积</text>
+              <input class="form-input" v-model="cureInfoForm.purifier_M2" placeholder="请输入面积" type="number" />
+            </view>
+          </view>
+
+          <!-- 抗凝剂 -->
+          <view class="form-section">
+            <view class="section-title">抗凝剂</view>
+            <view class="form-item">
+              <text class="form-label">首剂</text>
+              <view class="unit-input-container">
+                <input class="form-input" v-model="cureInfoForm.first_Heparin" placeholder="请输入首剂" type="number" />
+                <PickerSelect 
+                  v-model="cureInfoForm.first_Drug_Unit" 
+                  title="选择单位" 
+                  :options="unitOptions"
+                  placeholder="单位"
+                />
+              </view>
+            </view>
+            <view class="form-item">
+              <text class="form-label">追加</text>
+              <view class="unit-input-container">
+                <input class="form-input" v-model="cureInfoForm.dosis_Sustentativa" placeholder="请输入追加" type="number" />
+                <PickerSelect 
+                  v-model="cureInfoForm.second_Drug_Unit" 
+                  title="选择单位" 
+                  :options="unitOptions"
+                  placeholder="单位"
+                />
+              </view>
+            </view>
+          </view>
+
+          <!-- 人员信息 -->
+          <view class="form-section">
+            <view class="section-title">人员信息</view>
+            <view class="form-item">
+              <text class="form-label">责任医生</text>
+              <PickerSelect 
+                v-model="cureInfoForm.primary_Doctor" 
+                title="选择责任医生" 
+                :options="doctorOptions"
+                placeholder="请选择责任医生"
+              />
+            </view>
+            <view class="form-item">
+              <text class="form-label">责任护士</text>
+              <PickerSelect 
+                v-model="cureInfoForm.primary_Nurse" 
+                title="选择责任护士" 
+                :options="nurseOptions"
+                placeholder="请选择责任护士"
+              />
+            </view>
+            <view class="form-item">
+              <text class="form-label">穿刺护士</text>
+              <PickerSelect 
+                v-model="cureInfoForm.puncture_Nurse" 
+                title="选择穿刺护士" 
+                :options="nurseOptions"
+                placeholder="请选择穿刺护士"
+              />
+            </view>
+          </view>
+
+          <view class="button-container">
+            <view class="save-button" @click="handleSave">
+              <text class="save-text">保存</text>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <view class="tab-content" v-show="activeTab === 'assessment'">
+        <scroll-view scroll-y class="scroll-content">
+          <!-- 评估与治疗情况 -->
+          <view class="form-section">
+            <view class="section-title">评估与治疗情况</view>
+            
+            <!-- 透析前体重 -->
+            <view class="form-item">
+              <text class="form-label">透析前体重</text>
+              <input class="form-input" v-model="cureInfoForm.before_Dry_Weight" placeholder="请输入透析前体重" type="number" />
+            </view>
+            
+            <!-- 透析后体重 -->
+            <view class="form-item">
+              <text class="form-label">透析后体重</text>
+              <input class="form-input" v-model="cureInfoForm.after_Dry_Weight" placeholder="请输入透析后体重" type="number" />
+            </view>
+            
+            <!-- 上次透析后体重 -->
+            <view class="form-item">
+              <text class="form-label">上次透析后体重</text>
+              <input class="form-input" v-model="cureInfoForm.last_Time_Dry_Weight" placeholder="请输入上次透析后体重" type="number" />
+            </view>
+            
+            <!-- 置换液总容量 -->
+            <view class="form-item">
+              <text class="form-label">置换液总容量</text>
+              <input class="form-input" v-model="cureInfoForm.filtration_Displacement_Liquid" placeholder="请输入置换液总容量" type="number" />
+            </view>
+            
+            <!-- 滤出液总容量 -->
+            <view class="form-item">
+              <text class="form-label">滤出液总容量</text>
+              <input class="form-input" v-model="cureInfoForm.filtration_Percolate" placeholder="请输入滤出液总容量" type="number" />
+            </view>
+            
+            <!-- 血浆容量 -->
+            <view class="form-item">
+              <text class="form-label">血浆容量</text>
+              <input class="form-input" v-model="cureInfoForm.displacement_Liquid" placeholder="请输入血浆容量" type="number" />
+            </view>
+            
+            <!-- 滤出血浆容量 -->
+            <view class="form-item">
+              <text class="form-label">滤出血浆容量</text>
+              <input class="form-input" v-model="cureInfoForm.percolate" placeholder="请输入滤出血浆容量" type="number" />
+            </view>
+          </view>
+
+          <view class="button-container">
+            <view class="save-button" @click="handleSaveAssessment">
+              <text class="save-text">保存评估信息</text>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <!-- 底部导航 -->
+    <view class="bottom-nav">
+      <view
+        class="nav-item"
+        :class="{ active: bottomTab === 'info' }"
+        @click="bottomTab = 'info'; activeTab = 'info'"
+      >
+        <text class="nav-icon">📄</text>
+        <text class="nav-text">治疗信息</text>
+      </view>
+      <view
+        class="nav-item"
+        :class="{ active: bottomTab === 'orders' }"
+        @click="handleNavigateOrders"
+      >
+        <text class="nav-icon">📋</text>
+        <text class="nav-text">临时医嘱</text>
+      </view>
+      <view
+        class="nav-item"
+        :class="{ active: bottomTab === 'params' }"
+        @click="handleNavigateParams"
+      >
+        <text class="nav-icon">📊</text>
+        <text class="nav-text">透析参数</text>
+      </view>
+      <view
+        class="nav-item"
+        :class="{ active: bottomTab === 'summary' }"
+        @click="handleNavigateSummary"
+      >
+        <text class="nav-icon">📝</text>
+        <text class="nav-text">透析小结</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script setup lang="ts">
+import { ref, reactive, computed, onMounted } from 'vue'
+import NavBar from '@/components/NavBar.vue'
+import PickerSelect from '@/components/PickerSelect.vue'
+import RadioButtonGroup from '@/components/RadioButtonGroup.vue'
+import CheckboxGroup from '@/components/CheckboxGroup.vue'
+import { useAppStore } from '@/stores/app'
+import type { MedCureInfo } from '@/utils/types'
+
+const store = useAppStore()
+const activeTab = ref<'info' | 'assessment'>('info')
+const bottomTab = ref<'info' | 'orders' | 'longOrders' | 'params' | 'summary'>('info')
+const scheduleId = ref('')
+
+const patientName = computed(() => store.currentPatient?.PATIENTNAME || '患者详情')
+
+// 下拉选项配置
+const purificationModeOptions = [
+  { value: 'HD', label: 'HD' },
+  { value: 'HDF', label: 'HDF' },
+  { value: 'CRRT', label: 'CRRT' },
+  { value: 'SLED', label: 'SLED' }
+]
+
+const vascularAccessOptions = [
+  { value: '1', label: '动静脉内瘘' },
+  { value: '2', label: '中心静脉导管' },
+  { value: '3', label: '人造血管' }
+]
+
+const purifierTypeOptions = [
+  { value: '1', label: '类型A' },
+  { value: '2', label: '类型B' },
+  { value: '3', label: '类型C' }
+]
+
+const dialyzerOptions = [
+  { value: '1', label: '型号X' },
+  { value: '2', label: '型号Y' },
+  { value: '3', label: '型号Z' }
+]
+
+const dialyzerMembraneOptions = [
+  { value: '1', label: '聚砜膜' },
+  { value: '2', label: '聚丙烯腈膜' },
+  { value: '3', label: '其他' }
+]
+
+const unitOptions = [
+  { value: 'mg', label: 'mg' },
+  { value: 'ug', label: 'ug' },
+  { value: 'ml', label: 'ml' }
+]
+
+const doctorOptions = [
+  { value: '1', label: '张医生' },
+  { value: '2', label: '李医生' },
+  { value: '3', label: '王医生' },
+  { value: '4', label: '赵医生' }
+]
+
+const nurseOptions = [
+  { value: '1', label: '护士A' },
+  { value: '2', label: '护士B' },
+  { value: '3', label: '护士C' },
+  { value: '4', label: '护士D' }
+]
+
+const yesNoOptions = [
+  { value: '1', label: '是' },
+  { value: '0', label: '否' }
+]
+
+const hasNotOptions = [
+  { value: '1', label: '有' },
+  { value: '0', label: '无' }
+]
+
+const goodPoorOptions = [
+  { value: '1', label: '良好' },
+  { value: '0', label: '欠佳' }
+]
+
+// 治疗信息表单
+const cureInfoForm = reactive<Partial<MedCureInfo>>({
+  purification_Mode: '',
+  frequency_Hours: '',
+  frequency_Minute: '',
+  clean_Up_Times: '',
+  vascular_Access_Id: '',
+  machine_Type: '',
+  machine_Id: '',
+  purifier_Name: '',
+  purifier_M2: '',
+  heparin_Species: '',
+  first_Heparin: '',
+  first_Drug_Unit: 'mg',
+  dosis_Sustentativa: '',
+  second_Drug_Unit: 'mg',
+  use_Type: '',
+  reuse_Times: '',
+  primary_Doctor: '',
+  primary_Nurse: '',
+  puncture_Nurse: '',
+  before_Dry_Weight: '',
+  after_Dry_Weight: '',
+  last_Time_Dry_Weight: '',
+  filtration_Displacement_Liquid: '',
+  filtration_Percolate: '',
+  displacement_Liquid: '',
+  percolate: ''
+})
+
+const handleRefresh = () => {
+  store.fetchPatients()
+}
+
+const formatStatus = (status: string | number) => {
+  const statusMap: Record<string | number, string> = {
+    '1': '透析中',
+    '2': '已结束',
+    '3': '待治疗'
+  }
+  return statusMap[status] || '未知'
+}
+
+const getStatusClass = (status: string | number) => {
+  const classMap: Record<string | number, string> = {
+    '1': 'status-dialyzing',
+    '2': 'status-finished',
+    '3': 'status-waiting'
+  }
+  return classMap[status] || ''
+}
+
+const handleSave = () => {
+  uni.showToast({
+    title: '保存成功',
+    icon: 'success'
+  })
+}
+
+const handleSaveAssessment = () => {
+  uni.showToast({
+    title: '评估信息保存成功',
+    icon: 'success'
+  })
+}
+
+const handleNavigateOrders = () => {
+  uni.navigateTo({
+    url: '/pages/orders/index'
+  })
+}
+
+const handleNavigateParams = () => {
+  uni.navigateTo({
+    url: '/pages/dialysis-param/index'
+  })
+}
+
+const handleNavigateSummary = () => {
+  uni.navigateTo({
+    url: '/pages/summary/index'
+  })
+}
+
+onMounted(() => {
+  const pages = getCurrentPages()
+  const currentPage = pages[pages.length - 1]
+  const options = currentPage.options as any
+  
+  if (options.id) {
+    scheduleId.value = options.id
+    // 加载治疗信息
+  }
+  
+  // 初始化数据
+  if (store.currentPatient) {
+    const order = store.orders.find(o => o.PATIENT_SCHEDULE_ID === store.currentPatient.PATIENT_SCHEDULE_ID)
+    if (order) {
+      Object.assign(cureInfoForm, {
+        PEND_ID: order.PEND_ID,
+        PATIENT_SCHEDULE_ID: order.PATIENT_SCHEDULE_ID,
+        PURIFICATION_MODE: store.currentPatient.PURIFICATION_MODE,
+        MOEDL_NAME: store.currentPatient.MODEL_NAME,
+        BEDNAME: store.currentPatient.BEDNAME
+      })
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+.patient-detail-page {
+  min-height: 100vh;
+  background-color: $bg-light;
+  display: flex;
+  flex-direction: column;
+}
+
+.refresh-icon {
+  font-size: 24px;
+  padding: 8px;
+}
+
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loading-content {
+  background-color: white;
+  padding: 40px 60px;
+  border-radius: 12px;
+}
+
+.loading-text {
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: 120px;
+  overflow-y: auto;
+}
+
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: white;
+  padding: $spacing-base;
+  border-radius: $radius-base;
+  margin-bottom: $spacing-base;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.patient-info-card {
+  flex: 1;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 12px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.info-label {
+  font-size: $font-size-base;
+  color: $text-secondary;
+  min-width: 80px;
+}
+
+.info-value {
+  font-size: $font-size-base;
+  color: $text-primary;
+  font-weight: 500;
+  flex: 1;
+}
+
+.patient-status-badge {
+  padding: 8px 16px;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  
+  &.status-dialyzing {
+    background-color: $primary-light;
+    color: $primary-dark;
+  }
+  
+  &.status-finished {
+    background-color: $success-light;
+    color: $success-dark;
+  }
+  
+  &.status-waiting {
+    background-color: $warning-light;
+    color: $warning-dark;
+  }
+}
+
+.tabs-header {
+  display: flex;
+  background-color: white;
+  border-radius: $radius-base;
+  margin-bottom: $spacing-base;
+  overflow: hidden;
+}
+
+.tab-item {
+  flex: 1;
+  padding: $spacing-base;
+  text-align: center;
+  font-size: $font-size-base;
+  color: $text-secondary;
+  position: relative;
+  
+  &.active {
+    color: $primary-color;
+    font-weight: 500;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background-color: $primary-color;
+      border-radius: 2px;
+    }
+  }
+}
+
+.tab-content {
+  background-color: white;
+  border-radius: $radius-base;
+  padding: $spacing-base;
+}
+
+.scroll-content {
+  max-height: calc(100vh - 300px);
+}
+
+.form-section {
+  margin-bottom: $spacing-base;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-title {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+  font-weight: 500;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-base;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-label {
+  min-width: 100px;
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+
+.form-input {
+  flex: 1;
+  height: 72px;
+  padding: 0 $spacing-sm;
+  background-color: $bg-light;
+  border-radius: $radius-sm;
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+
+.unit-input-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  
+  .form-input {
+    flex: 1;
+  }
+}
+
+.time-input-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.form-input.half {
+  flex: 1;
+}
+
+.time-unit {
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+
+.button-container {
+  padding: $spacing-base 0;
+}
+
+.save-button {
+  background-color: $primary-color;
+  color: white;
+  padding: $spacing-base;
+  border-radius: $radius-base;
+  text-align: center;
+  font-size: $font-size-base;
+  font-weight: 500;
+}
+
+.save-text {
+  color: white;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background-color: white;
+  border-top: 1px solid $border-color;
+  padding: 8px 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px;
+  color: $text-secondary;
+  
+  &.active {
+    color: $primary-color;
+  }
+}
+
+.nav-icon {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.nav-text {
+  font-size: $font-size-xs;
+}
+</style>

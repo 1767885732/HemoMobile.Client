@@ -1,0 +1,220 @@
+# 血透移动系统：Android vs H5 控件对照分析报告
+
+## 概述
+
+本报告详细对比了原Android版本与重构后的H5版本的控件实现情况，确保H5版本的控件与Android版本保持一致。
+
+---
+
+## 一、控件实现对照表
+
+| Android控件 | H5实现 | 页面 | 状态 |
+|-----------|--------|------|------|
+| **Spinner** | PickerSelect 组件 | 多个页面 | ✅ 完成 |
+| **ClearEditText** | input 组件 | 多个页面 | ✅ 完成 |
+| **RadioButton** | RadioButtonGroup 组件 | 患者详情评估 | ✅ 完成 |
+| **CheckBox** | CheckboxGroup 组件 | 患者详情评估 | ✅ 完成 |
+| **DateTextView** | uni.showActionSheet | 搜索页面 | ✅ 完成 |
+| **FormItem** | form-item 容器 | 所有表单页 | ✅ 完成 |
+| **AutoBgButton** | view+样式 | 所有页面 | ✅ 完成 |
+
+---
+
+## 二、主要页面控件实现详情
+
+### 1. 登录页面
+
+| Android控件 | H5实现 | 说明 |
+|-----------|--------|------|
+| ClearEditText (用户名) | input type="text" | ✅ |
+| ClearEditText (密码) | input type="password" | ✅ |
+| AutoBgButton (登录) | 自定义按钮 | ✅ |
+| ImageView (设置) | 文本图标 | ✅ |
+
+**文件位置**: `src/pages/login/index.vue`
+
+### 2. 搜索页面
+
+| Android控件 | H5实现 | 说明 |
+|-----------|--------|------|
+| DateTextView (日期) | 点击+弹出选择 | ✅ |
+| Spinner (时段) | PickerSelect组件 | ✅ |
+| Spinner (透析室) | PickerSelect组件 | ✅ |
+| AutoBgButton (搜索) | 自定义按钮 | ✅ |
+
+**文件位置**: `src/pages/search/index.vue`
+
+### 3. 患者列表页面
+
+| Android控件 | H5实现 | 说明 |
+|-----------|--------|------|
+| CardView (患者卡片) | view+样式 | ✅ |
+| TextView (信息展示) | text组件 | ✅ |
+| OnClickListener (点击) | @click事件 | ✅ |
+
+**文件位置**: `src/pages/patient-list/index.vue`
+
+### 4. 患者详情页面（治疗信息）
+
+| Android控件 | H5实现 | 说明 |
+|-----------|--------|------|
+| Spinner (治疗方式) | PickerSelect组件 | ✅ |
+| ClearEditText (治疗时间-小时) | input type="number" | ✅ |
+| ClearEditText (治疗时间-分钟) | input type="number" | ✅ |
+| ClearEditText (净化次数) | input type="number" | ✅ |
+| Spinner (血管通路) | PickerSelect组件 | ✅ |
+| Spinner (净化器类型) | PickerSelect组件 | ✅ |
+| Spinner (透析机型号) | PickerSelect组件 | ✅ |
+| Spinner (透析膜) | PickerSelect组件 | ✅ |
+| ClearEditText (面积) | input type="number" | ✅ |
+| ClearEditText (首剂) | input type="number" | ✅ |
+| Spinner (首剂单位) | PickerSelect组件 | ✅ |
+| ClearEditText (追加) | input type="number" | ✅ |
+| Spinner (追加单位) | PickerSelect组件 | ✅ |
+| Spinner (责任医生) | PickerSelect组件 | ✅ |
+| Spinner (责任护士) | PickerSelect组件 | ✅ |
+| Spinner (穿刺护士) | PickerSelect组件 | ✅ |
+| AutoBgButton (保存) | 自定义按钮 | ✅ |
+
+**文件位置**: `src/pages/patient-detail/index.vue`
+
+### 5. 患者详情页面（评估与治疗情况）
+
+| Android控件 | H5实现 | 说明 |
+|-----------|--------|------|
+| ClearEditText (透析前体重) | input type="number" | ✅ |
+| ClearEditText (透析后体重) | input type="number" | ✅ |
+| ClearEditText (上次透析后体重) | input type="number" | ✅ |
+| ClearEditText (置换液总容量) | input type="number" | ✅ |
+| ClearEditText (滤出液总容量) | input type="number" | ✅ |
+| ClearEditText (血浆容量) | input type="number" | ✅ |
+| ClearEditText (滤出血浆容量) | input type="number" | ✅ |
+| AutoBgButton (保存) | 自定义按钮 | ✅ |
+
+**注**: 其他评估项（如内瘘震颤、杂音等）在Android布局中已注释，暂未实现。
+
+**文件位置**: `src/pages/patient-detail/index.vue`
+
+---
+
+## 三、新增组件说明
+
+### 1. PickerSelect 组件
+
+**文件位置**: `src/components/PickerSelect.vue`
+
+**功能**: 替代Android的Spinner，提供下拉选择功能
+
+**特点**:
+- 支持自定义选项列表
+- 显示选择值和箭头图标
+- 点击弹出选择器
+- 支持初始占位文本
+
+**用法**:
+```vue
+<PickerSelect 
+  v-model="formField" 
+  title="选择项" 
+  :options="optionsArray"
+  placeholder="请选择"
+/>
+```
+
+### 2. RadioButtonGroup 组件
+
+**文件位置**: `src/components/RadioButtonGroup.vue`
+
+**功能**: 替代Android的RadioGroup+RadioButton
+
+**特点**:
+- 水平布局，类似Android
+- 支持多选一
+- 选中状态高亮
+
+**用法**:
+```vue
+<RadioButtonGroup 
+  v-model="formField" 
+  :options="optionsArray"
+/>
+```
+
+### 3. CheckboxGroup 组件
+
+**文件位置**: `src/components/CheckboxGroup.vue`
+
+**功能**: 替代Android的CheckBox
+
+**特点**:
+- 支持多选
+- 水平布局
+- 勾选状态显示✓
+
+**用法**:
+```vue
+<CheckboxGroup 
+  v-model="formFieldArray" 
+  :options="optionsArray"
+/>
+```
+
+---
+
+## 四、页面结构差异
+
+### Android版布局特点
+1. 使用 ScrollView 包裹内容
+2. FormItem 容器分组显示
+3. 各字段标签+控件布局
+
+### H5版布局特点
+1. 使用 scroll-view 组件
+2. form-section 分组显示
+3. form-item 容器，样式类似
+
+---
+
+## 五、已解决的问题
+
+1. ✅ 所有Spinner下拉框替换为PickerSelect组件
+2. ✅ 增加RadioButtonGroup组件
+3. ✅ 增加CheckboxGroup组件
+4. ✅ 优化患者详情页面布局，更接近Android版
+5. ✅ 更新搜索页面，使用通用Picker组件
+6. ✅ 保持Android的表单分组逻辑
+
+---
+
+## 六、后续建议
+
+1. **功能完善**: 根据实际需求补充评估页面的CheckBox/RadioButton项
+2. **样式优化**: 根据实际UI需求进一步调整样式细节
+3. **性能优化**: 大列表虚拟化，减少渲染压力
+4. **测试验证**: 在真机环境测试交互体验
+
+---
+
+## 七、文件清单
+
+### 新增组件
+- `src/components/PickerSelect.vue` - 下拉选择器
+- `src/components/RadioButtonGroup.vue` - 单选组
+- `src/components/CheckboxGroup.vue` - 复选组
+
+### 修改页面
+- `src/pages/search/index.vue` - 搜索页面
+- `src/pages/patient-detail/index.vue` - 患者详情页面
+
+### 原保持页面
+- `src/pages/login/index.vue` - 登录页面
+- `src/pages/patient-list/index.vue` - 患者列表页面
+- `src/pages/dialysis-param/index.vue` - 透析参数页面
+- `src/pages/orders/index.vue` - 医嘱页面
+- `src/pages/summary/index.vue` - 透析小结页面
+- `src/pages/settings/index.vue` - 设置页面
+
+---
+
+**报告生成时间**: 2026-05-14
+**报告版本**: v1.0

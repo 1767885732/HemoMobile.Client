@@ -1,0 +1,100 @@
+<template>
+  <view class="checkbox-group" @click="handleClick">
+    <view
+      v-for="(option, index) in options"
+      :key="option.value"
+      class="checkbox-item"
+      @click.stop="toggleOption(option)"
+    >
+      <view class="checkbox-box" :class="{ active: checkedValues.includes(option.value) }">
+        <view v-if="checkedValues.includes(option.value)" class="checkbox-check">
+          ✓
+        </view>
+      </view>
+      <text class="checkbox-label">{{ option.label }}</text>
+    </view>
+  </view>
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+
+interface CheckboxOption {
+  value: string
+  label: string
+}
+
+const props = withDefaults(defineProps<{
+  modelValue: string[]
+  options: CheckboxOption[]
+  title?: string
+}>(), {
+  title: ''
+})
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string[]): void
+}>()
+
+const checkedValues = ref([...props.modelValue])
+
+watch(() => props.modelValue, (newVal) => {
+  checkedValues.value = [...newVal]
+}, { deep: true })
+
+const toggleOption = (option: CheckboxOption) => {
+  const index = checkedValues.value.indexOf(option.value)
+  if (index > -1) {
+    checkedValues.value.splice(index, 1)
+  } else {
+    checkedValues.value.push(option.value)
+  }
+  emit('update:modelValue', [...checkedValues.value])
+}
+
+const handleClick = () => {
+  // 点击整个区域
+}
+</script>
+
+<style lang="scss" scoped>
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $text-hint;
+  border-radius: 4px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &.active {
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+}
+
+.checkbox-check {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.checkbox-label {
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+</style>
