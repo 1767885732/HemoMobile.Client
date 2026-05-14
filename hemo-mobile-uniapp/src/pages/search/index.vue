@@ -44,28 +44,80 @@
           <text class="picker-title">选择日期</text>
           <text class="picker-confirm" @click="confirmDate">确定</text>
         </view>
-        <picker-view 
-          class="date-picker-view" 
-          :value="pickerValue" 
-          @change="onDateChange"
-          indicator-style="height: 50px;"
-        >
-          <picker-view-column>
-            <view class="picker-item" v-for="(year, index) in years" :key="index">
-              {{ year }}年
-            </view>
-          </picker-view-column>
-          <picker-view-column>
-            <view class="picker-item" v-for="(month, index) in months" :key="index">
-              {{ month }}月
-            </view>
-          </picker-view-column>
-          <picker-view-column>
-            <view class="picker-item" v-for="(day, index) in days" :key="index">
-              {{ day }}日
-            </view>
-          </picker-view-column>
-        </picker-view>
+        
+        <view class="date-picker-body">
+          <!-- 年份选择 -->
+          <view class="picker-column">
+            <view class="column-header">年</view>
+            <scroll-view 
+              class="column-scroll" 
+              scroll-y 
+              :scroll-into-view="'year-' + scrollYearId"
+              @scroll="onYearScroll"
+            >
+              <view class="scroll-spacer-top"></view>
+              <view 
+                v-for="(year, index) in years" 
+                :key="'year-' + year"
+                :id="'year-' + year"
+                class="column-item"
+                :class="{ active: selectedYear === year }"
+                @click="selectYear(year)"
+              >
+                {{ year }}年
+              </view>
+              <view class="scroll-spacer-bottom"></view>
+            </scroll-view>
+          </view>
+          
+          <!-- 月份选择 -->
+          <view class="picker-column">
+            <view class="column-header">月</view>
+            <scroll-view 
+              class="column-scroll" 
+              scroll-y
+              :scroll-into-view="'month-' + scrollMonthId"
+              @scroll="onMonthScroll"
+            >
+              <view class="scroll-spacer-top"></view>
+              <view 
+                v-for="month in months" 
+                :key="'month-' + month"
+                :id="'month-' + month"
+                class="column-item"
+                :class="{ active: selectedMonth === month }"
+                @click="selectMonth(month)"
+              >
+                {{ month }}月
+              </view>
+              <view class="scroll-spacer-bottom"></view>
+            </scroll-view>
+          </view>
+          
+          <!-- 日期选择 -->
+          <view class="picker-column">
+            <view class="column-header">日</view>
+            <scroll-view 
+              class="column-scroll" 
+              scroll-y
+              :scroll-into-view="'day-' + scrollDayId"
+              @scroll="onDayScroll"
+            >
+              <view class="scroll-spacer-top"></view>
+              <view 
+                v-for="day in daysInMonth" 
+                :key="'day-' + day"
+                :id="'day-' + day"
+                class="column-item"
+                :class="{ active: selectedDay === day }"
+                @click="selectDay(day)"
+              >
+                {{ day }}日
+              </view>
+              <view class="scroll-spacer-bottom"></view>
+            </scroll-view>
+          </view>
+        </view>
       </view>
     </view>
   </view>
@@ -86,7 +138,13 @@ const selectedRoom = ref('')
 const isSearching = ref(false)
 
 const showPicker = ref(false)
-const pickerValue = ref([0, 0, 0])
+const selectedYear = ref(today.getFullYear())
+const selectedMonth = ref(today.getMonth() + 1)
+const selectedDay = ref(today.getDate())
+
+const scrollYearId = ref('')
+const scrollMonthId = ref('')
+const scrollDayId = ref('')
 
 const years = computed(() => {
   const currentYear = today.getFullYear()
@@ -97,11 +155,8 @@ const months = computed(() => {
   return Array.from({ length: 12 }, (_, i) => i + 1)
 })
 
-const days = computed(() => {
-  const year = years.value[pickerValue.value[0]]
-  const month = months.value[pickerValue.value[1]]
-  const daysInMonth = new Date(year, month, 0).getDate()
-  return Array.from({ length: daysInMonth }, (_, i) => i + 1)
+const daysInMonth = computed(() => {
+  return Array.from({ length: 31 }, (_, i) => i + 1)
 })
 
 const timeSlotOptions = [
@@ -121,26 +176,13 @@ const roomOptions = [
   { value: '7', label: '透析室G区' }
 ]
 
-// 初始化日期选择器位置
-const initDatePicker = () => {
-  const parts = selectedDate.value.split('-')
-  const year = parseInt(parts[0])
-  const month = parseInt(parts[1])
-  const day = parseInt(parts[2])
-  
-  const yearIndex = years.value.indexOf(year)
-  const monthIndex = month - 1
-  const dayIndex = day - 1
-  
-  pickerValue.value = [
-    yearIndex >= 0 ? yearIndex : 0,
-    monthIndex >= 0 ? monthIndex : 0,
-    dayIndex >= 0 ? dayIndex : 0
-  ]
-}
-
 const showDatePicker = () => {
-  initDatePicker()
+  // 初始化当前选择的日期
+  const parts = selectedDate.value.split('-')
+  selectedYear.value = parseInt(parts[0])
+  selectedMonth.value = parseInt(parts[1])
+  selectedDay.value = parseInt(parts[2])
+  
   showPicker.value = true
 }
 
@@ -148,16 +190,37 @@ const hidePicker = () => {
   showPicker.value = false
 }
 
-const onDateChange = (e: any) => {
-  pickerValue.value = e.detail.value
+const selectYear = (year: number) => {
+  selectedYear.value = year
+}
+
+const selectMonth = (month: number) => {
+  selectedMonth.value = month
+  // 如果选择的日期超过当月天数，自动调整
+  const maxDay = new Date(selectedYear.value, month, 0).getDate()
+  if (selectedDay.value > maxDay) {
+    selectedDay.value = maxDay
+  }
+}
+
+const selectDay = (day: number) => {
+  selectedDay.value = day
+}
+
+const onYearScroll = (e: any) => {
+  // 可以在这里添加滚动监听逻辑
+}
+
+const onMonthScroll = (e: any) => {
+  // 可以在这里添加滚动监听逻辑
+}
+
+const onDayScroll = (e: any) => {
+  // 可以在这里添加滚动监听逻辑
 }
 
 const confirmDate = () => {
-  const year = years.value[pickerValue.value[0]]
-  const month = months.value[pickerValue.value[1]]
-  const day = days.value[pickerValue.value[2]]
-  
-  selectedDate.value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+  selectedDate.value = `${selectedYear.value}-${String(selectedMonth.value).padStart(2, '0')}-${String(selectedDay.value).padStart(2, '0')}`
   hidePicker()
 }
 
@@ -300,6 +363,7 @@ const handleSearch = async () => {
   width: 100%;
   background: $card-background;
   border-radius: $radius-lg $radius-lg 0 0;
+  max-height: 60vh;
 }
 
 .picker-header {
@@ -323,16 +387,44 @@ const handleSearch = async () => {
   font-weight: 500;
 }
 
-.date-picker-view {
+.date-picker-body {
+  display: flex;
+  padding: 16px 8px;
+}
+
+.picker-column {
+  flex: 1;
+  text-align: center;
+}
+
+.column-header {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.column-scroll {
   height: 200px;
 }
 
-.picker-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: $font-size-lg;
+.scroll-spacer-top,
+.scroll-spacer-bottom {
+  height: 80px;
+}
+
+.column-item {
+  height: 40px;
+  line-height: 40px;
+  font-size: $font-size-base;
   color: $text-primary;
+  cursor: pointer;
+  
+  &.active {
+    color: $primary-color;
+    font-weight: 600;
+    font-size: $font-size-lg;
+  }
 }
 
 page {
