@@ -59,7 +59,12 @@
           <view class="section-title">基本信息</view>
           <view class="form-item">
             <text class="form-label">治疗方式</text>
-            <input class="form-input" v-model="cureInfoForm.purification_Mode" placeholder="请输入治疗方式" />
+            <PickerSelect 
+              v-model="cureInfoForm.purification_Mode" 
+              title="选择治疗方式" 
+              :options="purificationModeOptions"
+              placeholder="请选择治疗方式"
+            />
           </view>
           <view class="form-item">
             <text class="form-label">治疗时间</text>
@@ -107,7 +112,12 @@
           <view class="section-title">抗凝剂</view>
           <view class="form-item">
             <text class="form-label">肝素种类</text>
-            <input class="form-input" v-model="cureInfoForm.heparin_Species" placeholder="请输入肝素种类" />
+            <PickerSelect 
+              v-model="cureInfoForm.heparin_Species" 
+              title="选择肝素种类" 
+              :options="heparinSpeciesOptions"
+              placeholder="请选择肝素种类"
+            />
           </view>
           <view class="form-item">
             <text class="form-label">首剂</text>
@@ -123,7 +133,12 @@
           <view class="section-title">血管通路</view>
           <view class="form-item">
             <text class="form-label">通路类型</text>
-            <input class="form-input" v-model="cureInfoForm.vascular_Access_Type" placeholder="请选择通路类型" />
+            <PickerSelect 
+              v-model="cureInfoForm.vascular_Access_Type" 
+              title="选择通路类型" 
+              :options="vascularAccessTypeOptions"
+              placeholder="请选择通路类型"
+            />
           </view>
           <view class="form-item">
             <text class="form-label">通路ID</text>
@@ -155,15 +170,30 @@
           <view class="section-title">人员信息</view>
           <view class="form-item">
             <text class="form-label">责任医生</text>
-            <input class="form-input" v-model="cureInfoForm.primary_Doctor" placeholder="请选择责任医生" />
+            <PickerSelect 
+              v-model="cureInfoForm.primary_Doctor" 
+              title="选择责任医生" 
+              :options="doctorOptions"
+              placeholder="请选择责任医生"
+            />
           </view>
           <view class="form-item">
             <text class="form-label">责任护士</text>
-            <input class="form-input" v-model="cureInfoForm.primary_Nurse" placeholder="请选择责任护士" />
+            <PickerSelect 
+              v-model="cureInfoForm.primary_Nurse" 
+              title="选择责任护士" 
+              :options="nurseOptions"
+              placeholder="请选择责任护士"
+            />
           </view>
           <view class="form-item">
             <text class="form-label">穿刺护士</text>
-            <input class="form-input" v-model="cureInfoForm.puncture_Nurse" placeholder="请选择穿刺护士" />
+            <PickerSelect 
+              v-model="cureInfoForm.puncture_Nurse" 
+              title="选择穿刺护士" 
+              :options="nurseOptions"
+              placeholder="请选择穿刺护士"
+            />
           </view>
         </view>
       </view>
@@ -270,7 +300,12 @@
           <view class="section-title">透析器信息</view>
           <view class="form-item">
             <text class="form-label">使用类型</text>
-            <input class="form-input" v-model="cureInfoForm.use_Type" placeholder="请输入使用类型" />
+            <PickerSelect 
+              v-model="cureInfoForm.use_Type" 
+              title="选择使用类型" 
+              :options="useTypeOptions"
+              placeholder="请选择使用类型"
+            />
           </view>
           <view class="form-item">
             <text class="form-label">复用次数</text>
@@ -350,6 +385,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 import NavBar from '@/components/NavBar.vue'
+import PickerSelect from '@/components/PickerSelect.vue'
 import { useAppStore } from '@/stores/app'
 import type { MedCureInfo } from '@/utils/types'
 
@@ -359,6 +395,44 @@ const bottomTab = ref<'info' | 'orders' | 'longOrders' | 'params' | 'summary'>('
 const scheduleId = ref('')
 
 const patientName = computed(() => store.currentPatient?.PATIENTNAME || '患者详情')
+
+const purificationModeOptions = [
+  { value: 'HD', label: 'HD' },
+  { value: 'HDF', label: 'HDF' },
+  { value: 'CRRT', label: 'CRRT' },
+  { value: 'SLED', label: 'SLED' }
+]
+
+const heparinSpeciesOptions = [
+  { value: '普通肝素', label: '普通肝素' },
+  { value: '低分子肝素', label: '低分子肝素' },
+  { value: '无肝素', label: '无肝素' }
+]
+
+const vascularAccessTypeOptions = [
+  { value: '动静脉内瘘', label: '动静脉内瘘' },
+  { value: '中心静脉导管', label: '中心静脉导管' },
+  { value: '人造血管', label: '人造血管' }
+]
+
+const useTypeOptions = [
+  { value: '新', label: '新' },
+  { value: '复用', label: '复用' }
+]
+
+const doctorOptions = [
+  { value: '张医生', label: '张医生' },
+  { value: '李医生', label: '李医生' },
+  { value: '王医生', label: '王医生' },
+  { value: '赵医生', label: '赵医生' }
+]
+
+const nurseOptions = [
+  { value: '护士A', label: '护士A' },
+  { value: '护士B', label: '护士B' },
+  { value: '护士C', label: '护士C' },
+  { value: '护士D', label: '护士D' }
+]
 
 const cureInfoForm = reactive<Partial<MedCureInfo>>({
   purification_Mode: '',
