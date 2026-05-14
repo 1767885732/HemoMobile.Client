@@ -5,98 +5,142 @@
         <text class="item-label">选择日期</text>
         <view class="item-value" @click="showDatePicker">
           <text>{{ selectedDate }}</text>
+          <text class="arrow-icon">▾</text>
         </view>
       </view>
       
       <view class="search-item">
         <text class="item-label">选择时段</text>
-        <view class="item-value" @click="showTimeSlotPicker">
-          <text>{{ selectedTimeSlot }}</text>
-          <text class="arrow-icon">▾</text>
-        </view>
+        <PickerSelect 
+          v-model="selectedTimeSlot" 
+          title="选择时段" 
+          :options="timeSlotOptions"
+          placeholder="请选择时段"
+        />
       </view>
       
       <view class="search-item">
         <text class="item-label">选择透析室</text>
-        <view class="item-value" @click="showRoomPicker">
-          <text>{{ selectedRoom }}</text>
-          <text class="arrow-icon">▾</text>
-        </view>
+        <PickerSelect 
+          v-model="selectedRoom" 
+          title="选择透析室" 
+          :options="roomOptions"
+          placeholder="请选择透析室"
+        />
       </view>
       
       <view class="search-btn-container">
-        <button class="search-btn" @click="handleSearch">搜索</button>
+        <view class="search-btn" @click="handleSearch">
+          <text>搜索</text>
+        </view>
       </view>
     </view>
-    
-    <view class="picker-mask" v-if="showPicker" @click="hidePicker">
-      <view class="picker-content" @click.stop>
-        <view class="picker-header">{{ pickerTitle }}</view>
-        <view class="picker-list">
-          <view 
-            v-for="item in pickerOptions" 
-            :key="item"
-            class="picker-item"
-            :class="{ active: pickerValue === item }"
-            @click="selectPickerItem(item)"
-          >
-            {{ item }}
-          </view>
+
+    <!-- 日期选择弹窗 -->
+    <view class="date-picker-mask" v-if="showPicker" @click="hidePicker">
+      <view class="date-picker-content" @click.stop>
+        <view class="picker-header">
+          <text class="picker-cancel" @click="hidePicker">取消</text>
+          <text class="picker-title">选择日期</text>
+          <text class="picker-confirm" @click="confirmDate">确定</text>
         </view>
+        <picker-view 
+          class="date-picker-view" 
+          :value="pickerValue" 
+          @change="onDateChange"
+          indicator-style="height: 50px;"
+        >
+          <picker-view-column>
+            <view class="picker-item" v-for="(year, index) in years" :key="index">
+              {{ year }}年
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view class="picker-item" v-for="(month, index) in months" :key="index">
+              {{ month }}月
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view class="picker-item" v-for="(day, index) in days" :key="index">
+              {{ day }}日
+            </view>
+          </picker-view-column>
+        </picker-view>
       </view>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useAppStore } from '@/stores/app'
+import PickerSelect from '@/components/PickerSelect.vue'
 import type { PatientSearchParam } from '@/utils/types'
 
 const store = useAppStore()
 
-const selectedDate = ref('2026-05-13')
+const today = new Date()
+const selectedDate = ref(`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`)
 const selectedTimeSlot = ref('上午')
 const selectedRoom = ref('')
 const isSearching = ref(false)
 
 const showPicker = ref(false)
-const pickerTitle = ref('')
-const pickerType = ref<'timeSlot' | 'room'>('timeSlot')
-const pickerValue = ref('')
+const pickerValue = ref([0, 0, 0])
 
-const timeSlots = ['上午', '下午', '晚班', '急诊']
-const rooms = ['透析室A区', '透析室B区', '透析室C区', '透析室D区', '透析室E区', '透析室F区', '透析室G区']
+const years = computed(() => {
+  const currentYear = today.getFullYear()
+  return Array.from({ length: 10 }, (_, i) => currentYear - 5 + i)
+})
 
-const pickerOptions = ref<string[]>([])
+const months = computed(() => {
+  return Array.from({ length: 12 }, (_, i) => i + 1)
+})
+
+const days = computed(() => {
+  const year = years.value[pickerValue.value[0]]
+  const month = months.value[pickerValue.value[1]]
+  const daysInMonth = new Date(year, month, 0).getDate()
+  return Array.from({ length: daysInMonth }, (_, i) => i + 1)
+})
+
+const timeSlotOptions = [
+  { value: '上午', label: '上午' },
+  { value: '下午', label: '下午' },
+  { value: '晚班', label: '晚班' },
+  { value: '急诊', label: '急诊' }
+]
+
+const roomOptions = [
+  { value: '1', label: '透析室A区' },
+  { value: '2', label: '透析室B区' },
+  { value: '3', label: '透析室C区' },
+  { value: '4', label: '透析室D区' },
+  { value: '5', label: '透析室E区' },
+  { value: '6', label: '透析室F区' },
+  { value: '7', label: '透析室G区' }
+]
+
+// 初始化日期选择器位置
+const initDatePicker = () => {
+  const parts = selectedDate.value.split('-')
+  const year = parseInt(parts[0])
+  const month = parseInt(parts[1])
+  const day = parseInt(parts[2])
+  
+  const yearIndex = years.value.indexOf(year)
+  const monthIndex = month - 1
+  const dayIndex = day - 1
+  
+  pickerValue.value = [
+    yearIndex >= 0 ? yearIndex : 0,
+    monthIndex >= 0 ? monthIndex : 0,
+    dayIndex >= 0 ? dayIndex : 0
+  ]
+}
 
 const showDatePicker = () => {
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = now.getMonth() + 1
-  const day = now.getDate()
-  
-  uni.showActionSheet({
-    itemList: [`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`],
-    success: (res) => {
-      selectedDate.value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-    }
-  })
-}
-
-const showTimeSlotPicker = () => {
-  pickerTitle.value = '选择时段'
-  pickerType.value = 'timeSlot'
-  pickerOptions.value = timeSlots
-  pickerValue.value = selectedTimeSlot.value
-  showPicker.value = true
-}
-
-const showRoomPicker = () => {
-  pickerTitle.value = '选择透析室'
-  pickerType.value = 'room'
-  pickerOptions.value = rooms
-  pickerValue.value = selectedRoom.value
+  initDatePicker()
   showPicker.value = true
 }
 
@@ -104,12 +148,16 @@ const hidePicker = () => {
   showPicker.value = false
 }
 
-const selectPickerItem = (item: string) => {
-  if (pickerType.value === 'timeSlot') {
-    selectedTimeSlot.value = item
-  } else {
-    selectedRoom.value = item
-  }
+const onDateChange = (e: any) => {
+  pickerValue.value = e.detail.value
+}
+
+const confirmDate = () => {
+  const year = years.value[pickerValue.value[0]]
+  const month = months.value[pickerValue.value[1]]
+  const day = days.value[pickerValue.value[2]]
+  
+  selectedDate.value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
   hidePicker()
 }
 
@@ -177,58 +225,66 @@ const handleSearch = async () => {
 <style lang="scss" scoped>
 .search-page {
   min-height: 100vh;
-  background: $background-color;
+  background: $bg-light;
   padding-top: 88rpx;
 }
 
 .search-content {
-  padding: $spacing-lg;
+  padding: $spacing-base;
 }
 
 .search-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $spacing-md;
+  padding: $spacing-base;
   background: $card-background;
   margin-bottom: $spacing-sm;
-  border-radius: $radius-md;
+  border-radius: $radius-base;
 }
 
 .item-label {
   font-size: $font-size-base;
   color: $text-secondary;
+  min-width: 100px;
 }
 
 .item-value {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: $font-size-base;
   color: $text-primary;
+  padding: 16px 12px;
+  background: $bg-light;
+  border-radius: $radius-sm;
+  cursor: pointer;
 }
 
 .arrow-icon {
-  margin-left: $spacing-sm;
   font-size: $font-size-sm;
   color: $text-hint;
 }
 
 .search-btn-container {
-  margin-top: $spacing-xl;
+  margin-top: $spacing-base;
 }
 
 .search-btn {
   width: 100%;
-  height: 88rpx;
+  height: 48px;
   background: $primary-color;
   color: #FFFFFF;
-  border-radius: $radius-md;
-  font-size: $font-size-lg;
+  border-radius: $radius-base;
+  font-size: $font-size-base;
   font-weight: 500;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.picker-mask {
+.date-picker-mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -240,44 +296,46 @@ const handleSearch = async () => {
   z-index: 1000;
 }
 
-.picker-content {
+.date-picker-content {
   width: 100%;
   background: $card-background;
   border-radius: $radius-lg $radius-lg 0 0;
-  max-height: 60vh;
 }
 
 .picker-header {
-  height: 88rpx;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid $border-color;
+}
+
+.picker-cancel,
+.picker-confirm {
+  color: $primary-color;
+  font-size: $font-size-base;
+}
+
+.picker-title {
+  font-size: $font-size-base;
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.date-picker-view {
+  height: 200px;
+}
+
+.picker-item {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: $font-size-lg;
-  font-weight: 500;
-  border-bottom: 1rpx solid $divider-color;
-  color: $primary-color;
-}
-
-.picker-list {
-  max-height: 400rpx;
-  overflow-y: auto;
-}
-
-.picker-item {
-  height: 80rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: $font-size-base;
-  border-bottom: 1rpx solid $divider-color;
-  
-  &.active {
-    background: $primary-light;
-    color: $primary-dark;
-  }
+  color: $text-primary;
 }
 
 page {
-  background: $background-color;
+  background: $bg-light;
 }
 </style>
