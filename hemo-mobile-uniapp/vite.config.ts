@@ -9,5 +9,13 @@ export default defineConfig({
         additionalData: `@import "@/styles/variables.scss";`
       }
     }
+  },
+  resolve: {
+    alias: {
+      'vue-router': 'vue-router/dist/vue-router.esm-bundler.js'
+    }
+  },
+  optimizeDeps: {
+    include: ['vue-router']
   }
 })

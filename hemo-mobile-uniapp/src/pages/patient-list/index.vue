@@ -26,7 +26,7 @@
         :key="patient.PATIENT_SCHEDULE_ID"
         class="patient-card"
         :class="{ active: selectedPatient?.PATIENT_SCHEDULE_ID === patient.PATIENT_SCHEDULE_ID }"
-        @click="selectPatient(patient)"
+        @click.stop="selectPatient(patient)"
       >
         <view class="patient-info">
           <view class="patient-name-row">
@@ -99,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import { useAppStore } from '@/stores/app'
 import type { MedPatientSchedule } from '@/utils/types'
@@ -107,6 +107,19 @@ import type { MedPatientSchedule } from '@/utils/types'
 const store = useAppStore()
 const selectedPatient = ref<MedPatientSchedule | null>(null)
 const showActionModal = ref(false)
+
+onMounted(() => {
+  if (store.patients.length === 0) {
+    uni.showToast({
+      title: '请先搜索患者',
+      icon: 'none',
+      duration: 2000
+    })
+    setTimeout(() => {
+      uni.navigateBack()
+    }, 2000)
+  }
+})
 
 const formatStatus = (status: string | number): string => {
   const statusMap: Record<string | number, string> = {
