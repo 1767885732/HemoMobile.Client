@@ -40,7 +40,7 @@ public class UpdateManage {
 		CheckUpdateTask checkUpdateTask = new CheckUpdateTask() {
 			@Override
 			protected void onPostExecute(String result) {
-				if (result == null && "".equals(result))
+				if (result == null || "".equals(result))
 					return;
 
 				try {
