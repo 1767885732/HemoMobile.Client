@@ -79,12 +79,7 @@ public class UpdateManage {
 			public void onClick(DialogInterface dialog, int which) {
 				switch (which) {
 				case AlertDialog.BUTTON_POSITIVE:// 更新
-					if (isWifiConnect(context))// wifi环境直接更新
-						downloadApk(context, apkUrl,apkName);
-					else
-						// 提示是否直接更新
-						showConfirmDialog(context, apkUrl,apkName);
-
+					downloadApk(context, apkUrl,apkName);
 					break;
 				default:
 					dialog.dismiss();
