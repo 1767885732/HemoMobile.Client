@@ -14,7 +14,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.support.v4.BuildConfig;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
@@ -42,6 +41,8 @@ public class DownloadApkService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
+		Log.d("DownloadService", "onHandleIntent 被调用");
+		
 		mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mBuilder = new NotificationCompat.Builder(this);
 
@@ -51,10 +52,14 @@ public class DownloadApkService extends IntentService {
 		mBuilder.setContentTitle(appName).setSmallIcon(icon);
 		String urlStr = intent.getStringExtra(EXTRA_KEY_APK_URL);
 		String apkName = intent.getStringExtra(EXTRA_KEY_APK_NAME);
+		
+		Log.d("DownloadService", "urlStr: " + urlStr);
+		Log.d("DownloadService", "apkName: " + apkName);
 
 		InputStream in = null;
 		FileOutputStream out = null;
 		try {
+			Log.d("DownloadService", "开始下载...");
 			URL url = new URL(urlStr);
 			HttpURLConnection urlConnection = (HttpURLConnection) url
 					.openConnection();
@@ -74,22 +79,18 @@ public class DownloadApkService extends IntentService {
 			int byteread = 0;
 			in = urlConnection.getInputStream();
 			
-			String path = Environment.getExternalStorageDirectory().toString() + "/" + Environment.DIRECTORY_DOWNLOADS + "/";
-			File dir = new File(path);
+			File dir = getDir("apk", Context.MODE_PRIVATE);
 			if(!dir.exists())
 			{
 				dir.mkdirs();
 			}
+			Log.d("DownloadService", "下载目录: " + dir.getAbsolutePath());
 			
 			File apkFile = new File(dir.getAbsolutePath(), apkName + ".apk");
-			if(!apkFile.exists())
-			{
-				apkFile.createNewFile();
-			}
-			else
+			Log.d("DownloadService", "APK 文件路径: " + apkFile.getAbsolutePath());
+			if(apkFile.exists())
 			{
 				apkFile.delete();
-				apkFile.createNewFile();
 			}
 			
 			out = new FileOutputStream(apkFile);
@@ -109,26 +110,23 @@ public class DownloadApkService extends IntentService {
 				oldProgress = progress;
 			}
 			// 下载完成
+			Log.d("DownloadService", "下载完成，开始安装 APK");
 			// mBuilder.setContentText("下载完成").setProgress(0, 0, false);
 			mNotifyManager.cancel(0);
 			Intent installAPKIntent = new Intent(Intent.ACTION_VIEW);
-			// 如果没有设置SDCard写权限，或者没有sdcard,apk文件保存在内存中，需要授予权限才能安装
-			String[] command = { "chmod", "777", apkFile.toString() };
-			ProcessBuilder builder = new ProcessBuilder(command);
-			builder.start();
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				Log.d("DownloadService", "Android 7.0+，使用 FileProvider");
 				Uri contentUri = FileProvider.getUriForFile(this, "com.mdsd.docare.hemodialysis.app.fileprovider", apkFile);
 				installAPKIntent.setDataAndType(contentUri, "application/vnd.android.package-archive");
 				installAPKIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 				installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			} else {
+				Log.d("DownloadService", "Android 6.0 以下，直接使用文件路径");
 				installAPKIntent.setDataAndType(Uri.fromFile(apkFile),
 						"application/vnd.android.package-archive");
 				installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			}
-//			installAPKIntent.setDataAndType(Uri.fromFile(apkFile),
-//					"application/vnd.android.package-archive");
-//			installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			Log.d("DownloadService", "启动安装界面");
 			startActivity(installAPKIntent);
 			// installAPKIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 			// installAPKIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);

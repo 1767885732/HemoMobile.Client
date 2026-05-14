@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <external-path
-        name="files_root"
-        path="Android/data/com.mdsd.docare.hemodialysis.app/" />
+    <files-path
+        name="files_path"
+        path="apk/" />
+    <cache-path
+        name="cache_path"
+        path="." />
     <external-path
         name="external_storage_root"
         path="." />
