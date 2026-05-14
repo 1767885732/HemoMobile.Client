@@ -124,11 +124,22 @@ public class UpdateManage {
 	}
 
 	public static void downloadApk(Context context, String apkUrl, String apkName) {
-		Intent intent = new Intent(context.getApplicationContext(),
-				DownloadApkService.class);
-		intent.putExtra(DownloadApkService.EXTRA_KEY_APK_URL, apkUrl);
-		intent.putExtra(DownloadApkService.EXTRA_KEY_APK_NAME, apkName);
-		context.startService(intent);
+		try {
+			Log.d("UpdateManage", "downloadApk 被调用");
+			Log.d("UpdateManage", "apkUrl: " + apkUrl);
+			Log.d("UpdateManage", "apkName: " + apkName);
+			
+			Intent intent = new Intent(context.getApplicationContext(),
+					DownloadApkService.class);
+			intent.putExtra(DownloadApkService.EXTRA_KEY_APK_URL, apkUrl);
+			intent.putExtra(DownloadApkService.EXTRA_KEY_APK_NAME, apkName);
+			context.startService(intent);
+			
+			Log.d("UpdateManage", "DownloadApkService 已启动");
+		} catch (Exception e) {
+			Log.e("UpdateManage", "downloadApk 异常: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	// 检查是否wifi连接
