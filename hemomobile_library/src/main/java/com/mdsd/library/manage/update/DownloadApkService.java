@@ -112,33 +112,30 @@ public class DownloadApkService extends IntentService {
 			}
 			// 下载完成
 			Log.d("DownloadService", "下载完成，开始安装 APK");
-			// mBuilder.setContentText("下载完成").setProgress(0, 0, false);
 			mNotifyManager.cancel(0);
-			Intent installAPKIntent = new Intent(Intent.ACTION_VIEW);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-				Log.d("DownloadService", "Android 7.0+，使用 FileProvider");
-				Uri contentUri = FileProvider.getUriForFile(this, "com.mdsd.docare.hemodialysis.app.fileprovider", apkFile);
-				installAPKIntent.setDataAndType(contentUri, "application/vnd.android.package-archive");
-				installAPKIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-				installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			} else {
-				Log.d("DownloadService", "Android 6.0 以下，直接使用文件路径");
-				installAPKIntent.setDataAndType(Uri.fromFile(apkFile),
-						"application/vnd.android.package-archive");
-				installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			
+			try {
+				Intent installAPKIntent = new Intent(Intent.ACTION_VIEW);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+					Log.d("DownloadService", "Android 7.0+，使用 FileProvider");
+					Uri contentUri = FileProvider.getUriForFile(this, "com.mdsd.docare.hemodialysis.app.fileprovider", apkFile);
+					Log.d("DownloadService", "FileProvider URI: " + contentUri);
+					installAPKIntent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+					installAPKIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+					installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				} else {
+					Log.d("DownloadService", "Android 6.0 以下，直接使用文件路径");
+					installAPKIntent.setDataAndType(Uri.fromFile(apkFile),
+							"application/vnd.android.package-archive");
+					installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				}
+				Log.d("DownloadService", "启动安装界面");
+				Log.d("DownloadService", "resolveActivity: " + getPackageManager().resolveActivity(installAPKIntent, 0));
+				startActivity(installAPKIntent);
+				Log.d("DownloadService", "startActivity 已调用");
+			} catch (Exception e) {
+				Log.e("DownloadService", "启动安装界面失败: " + e.getMessage(), e);
 			}
-			Log.d("DownloadService", "启动安装界面");
-			startActivity(installAPKIntent);
-			// installAPKIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-			// installAPKIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
-			// PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-			// installAPKIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-			//
-			// mBuilder.setContentIntent(pendingIntent);
-			// Notification noti = mBuilder.build();
-			// noti.flags = android.app.Notification.FLAG_AUTO_CANCEL;
-			// mNotifyManager.notify(0, noti);
 
 		} catch (Exception e) {
 			Log.e(TAG, "download apk file error", e);
