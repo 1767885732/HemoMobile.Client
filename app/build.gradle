@@ -7,7 +7,7 @@ android {
         applicationId "com.mdsd.docare.hemodialysis.app"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 6
+        versionCode 7
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -30,11 +30,11 @@ android {
     }
 }
 
-applicationVariants.all { variant ->
-    variant.outputs.all { output ->
-        output.outputFileName = "${variant.buildType.name}-${variant.versionName}.apk"
-    }
-}
+// applicationVariants.all { variant ->
+//     variant.outputs.all { output ->
+//         output.outputFileName = "${variant.buildType.name}-${variant.versionName}.apk"
+//     }
+// }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
