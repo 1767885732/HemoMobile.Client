@@ -131,6 +131,14 @@ public class DownloadApkService extends IntentService {
 				}
 				Log.d("DownloadService", "启动安装界面");
 				Log.d("DownloadService", "resolveActivity: " + getPackageManager().resolveActivity(installAPKIntent, 0));
+				
+				// 添加延迟，确保安装界面不会被覆盖
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
 				startActivity(installAPKIntent);
 				Log.d("DownloadService", "startActivity 已调用");
 			} catch (Exception e) {
