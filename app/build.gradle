@@ -30,6 +30,13 @@ android {
     }
 }
 
+applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+        def newName = "HemoMobile-${variant.versionName}.apk"
+        output.outputFileName = newName
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
