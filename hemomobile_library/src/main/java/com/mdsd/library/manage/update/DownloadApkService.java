@@ -79,14 +79,15 @@ public class DownloadApkService extends IntentService {
 			int byteread = 0;
 			in = urlConnection.getInputStream();
 			
-			File dir = getDir("apk", Context.MODE_PRIVATE);
-			if(!dir.exists())
+			File filesDir = getFilesDir();
+			File apkDir = new File(filesDir, "apk");
+			if(!apkDir.exists())
 			{
-				dir.mkdirs();
+				apkDir.mkdirs();
 			}
-			Log.d("DownloadService", "下载目录: " + dir.getAbsolutePath());
+			Log.d("DownloadService", "下载目录: " + apkDir.getAbsolutePath());
 			
-			File apkFile = new File(dir.getAbsolutePath(), apkName + ".apk");
+			File apkFile = new File(apkDir.getAbsolutePath(), apkName + ".apk");
 			Log.d("DownloadService", "APK 文件路径: " + apkFile.getAbsolutePath());
 			if(apkFile.exists())
 			{
