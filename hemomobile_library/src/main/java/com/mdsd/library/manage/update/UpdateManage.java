@@ -7,6 +7,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -40,28 +41,42 @@ public class UpdateManage {
 		CheckUpdateTask checkUpdateTask = new CheckUpdateTask() {
 			@Override
 			protected void onPostExecute(String result) {
-				if (result == null || "".equals(result))
+				Log.d("UpdateManage", "onPostExecute 被调用");
+				Log.d("UpdateManage", "原始 result: " + result);
+				
+				if (result == null || "".equals(result)) {
+					Log.d("UpdateManage", "result 为空，退出");
 					return;
+				}
 
 				try {
+					Log.d("UpdateManage", "开始解析 JSON");
 					// 转换json
 					// json
 					// 内容{"apkUrl":"","title":"","content":"","type":"","versionCode":""}
 					result = result.substring(result.indexOf("\"") + 1,
 							result.lastIndexOf("\""));
 					result = result.replace("\\", "");
+					Log.d("UpdateManage", "处理后 result: " + result);
 					JSONObject jsonObject = JSONObject.parseObject(result);
 					int versionCode = context.getPackageManager()
 							.getPackageInfo(context.getPackageName(), 0).versionCode;
 					int newVersionCode = jsonObject.getIntValue("versionCode");
+					
+					Log.d("UpdateManage", "当前 versionCode: " + versionCode);
+					Log.d("UpdateManage", "新 versionCode: " + newVersionCode);
 
 					if (newVersionCode > versionCode) {
+						Log.d("UpdateManage", "发现新版本，显示更新对话框");
 						showDialog(context, jsonObject.getString("content"),
 								jsonObject.getString("apkUrl"),
 								jsonObject.getString("title"),apkName);
+					} else {
+						Log.d("UpdateManage", "当前已是最新版本");
 					}
 
 				} catch (Exception e) {
+					Log.e("UpdateManage", "解析异常: " + e.getMessage());
 					e.printStackTrace();
 				}
 
@@ -73,12 +88,20 @@ public class UpdateManage {
 	private static void showDialog(final Context context, String content,
 			final String apkUrl, String title,final String apkName) {
 
+		Log.d("UpdateManage", "showDialog 被调用");
+		Log.d("UpdateManage", "content: " + content);
+		Log.d("UpdateManage", "apkUrl: " + apkUrl);
+		Log.d("UpdateManage", "title: " + title);
+		Log.d("UpdateManage", "apkName: " + apkName);
+
 		OnClickListener onClickListener = new OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				Log.d("UpdateManage", "对话框按钮点击, which: " + which);
 				switch (which) {
 				case AlertDialog.BUTTON_POSITIVE:// 更新
+					Log.d("UpdateManage", "点击了更新按钮");
 					downloadApk(context, apkUrl,apkName);
 					break;
 				default:
