@@ -14,6 +14,14 @@ import type {
   PatientSearchParam
 } from '@/utils/types'
 
+interface VersionInfo {
+  versionCode: number
+  versionName: string
+  apkUrl: string
+  updateContent: string
+  forceUpdate: boolean
+}
+
 export const useAppStore = defineStore('app', () => {
   const baseUrl = ref('http://192.168.100.66:8014')
   const token = ref('')
@@ -300,6 +308,19 @@ export const useAppStore = defineStore('app', () => {
     }
   }
 
+  const checkForUpdate = async (): Promise<{ success: boolean; data?: VersionInfo; message?: string }> => {
+    try {
+      const response = await api.version.checkUpdate()
+      if (response.data) {
+        return { success: true, data: response.data }
+      }
+      return { success: false, message: '未获取到版本信息' }
+    } catch (error: any) {
+      console.error('Check update error:', error)
+      return { success: false, message: error.message || '检查更新失败' }
+    }
+  }
+
   const getMockPatients = (): MedPatientSchedule[] => [
     {
       PATIENT_SCHEDULE_ID: '1',
@@ -431,6 +452,7 @@ export const useAppStore = defineStore('app', () => {
     startCure,
     finishCure,
     fetchNurses,
-    fetchDoctors
+    fetchDoctors,
+    checkForUpdate
   }
 })

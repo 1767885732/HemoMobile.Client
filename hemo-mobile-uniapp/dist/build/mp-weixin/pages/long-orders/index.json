@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "长期医嘱",
+  "usingComponents": {
+    "nav-bar": "../../components/NavBar"
+  }
+}

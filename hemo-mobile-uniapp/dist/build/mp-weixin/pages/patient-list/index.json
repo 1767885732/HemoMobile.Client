@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "血透患者选择",
-  "usingComponents": {}
+  "usingComponents": {
+    "nav-bar": "../../components/NavBar"
+  }
 }

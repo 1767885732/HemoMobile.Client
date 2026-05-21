@@ -1,6 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "nav-bar": "../../components/NavBar"
+    "nav-bar": "../../components/NavBar",
+    "picker-select": "../../components/PickerSelect"
   }
 }

@@ -21,6 +21,14 @@ interface RequestOptions {
   loading?: boolean
 }
 
+interface VersionInfo {
+  versionCode: number
+  versionName: string
+  apkUrl: string
+  updateContent: string
+  forceUpdate: boolean
+}
+
 const API_CONFIG = {
   USER_API: '/api/MedUser',
   GET_STAFF_DICT_LIST: '/Api/MedUser/GetStaffDictList',
@@ -130,6 +138,12 @@ const del = <T = any>(url: string, data?: Record<string, any>, loading = true) =
 
 export const api = {
   config: API_CONFIG,
+
+  version: {
+    checkUpdate: () => {
+      return get<{ data: VersionInfo }>(API_CONFIG.GET_NEW_VERSION, {}, false)
+    }
+  },
 
   user: {
     login: (userName: string, password: string) => {

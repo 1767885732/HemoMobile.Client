@@ -288,22 +288,22 @@ const handleSearch = async () => {
 <style lang="scss" scoped>
 .search-page {
   min-height: 100vh;
-  background: $bg-light;
+  background: $background-color;
   padding-top: 88rpx;
 }
 
 .search-content {
-  padding: $spacing-base;
+  padding: $spacing-md;
 }
 
 .search-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $spacing-base;
+  padding: $spacing-md;
   background: $card-background;
   margin-bottom: $spacing-sm;
-  border-radius: $radius-base;
+  border-radius: $radius-md;
 }
 
 .item-label {
@@ -320,7 +320,7 @@ const handleSearch = async () => {
   font-size: $font-size-base;
   color: $text-primary;
   padding: 16px 12px;
-  background: $bg-light;
+  background: $background-color;
   border-radius: $radius-sm;
   cursor: pointer;
 }
@@ -331,7 +331,7 @@ const handleSearch = async () => {
 }
 
 .search-btn-container {
-  margin-top: $spacing-base;
+  margin-top: $spacing-md;
 }
 
 .search-btn {
@@ -339,7 +339,7 @@ const handleSearch = async () => {
   height: 48px;
   background: $primary-color;
   color: #FFFFFF;
-  border-radius: $radius-base;
+  border-radius: $radius-md;
   font-size: $font-size-base;
   font-weight: 500;
   display: flex;
@@ -428,6 +428,6 @@ const handleSearch = async () => {
 }
 
 page {
-  background: $bg-light;
+  background: $background-color;
 }
 </style>

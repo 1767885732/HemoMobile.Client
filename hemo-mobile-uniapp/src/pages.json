@@ -48,6 +48,12 @@
       "style": {
         "navigationBarTitleText": "透析小结"
       }
+    },
+    {
+      "path": "pages/long-orders/index",
+      "style": {
+        "navigationBarTitleText": "长期医嘱"
+      }
     }
   ],
   "globalStyle": {

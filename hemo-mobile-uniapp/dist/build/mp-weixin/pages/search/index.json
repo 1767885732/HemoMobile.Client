@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "血透信息搜索",
-  "usingComponents": {}
+  "usingComponents": {
+    "picker-select": "../../components/PickerSelect"
+  }
 }

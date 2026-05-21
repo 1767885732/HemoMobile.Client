@@ -7,7 +7,8 @@
     "pages/patient-detail/index",
     "pages/dialysis-param/index",
     "pages/orders/index",
-    "pages/summary/index"
+    "pages/summary/index",
+    "pages/long-orders/index"
   ],
   "window": {
     "navigationBarTextStyle": "white",
