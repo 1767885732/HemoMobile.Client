@@ -30,15 +30,15 @@ interface VersionInfo {
 }
 
 const API_CONFIG = {
-  USER_API: '/api/MedUser',
+  USER_API: '/Api/MedUser',
   GET_STAFF_DICT_LIST: '/Api/MedUser/GetStaffDictList',
   GET_DOCTOR_LIST: '/Api/MedUser/GetDoctorList',
   GET_NEW_VERSION: '/Api/MedUser/GetNewVersion',
-  CONFIG_API: '/api/Config/GetConfigList',
-  PATIENTSCHEDULE_API: '/api/Schedule/GetPatientScheduleList',
-  GETPATIENTSCHEDULEBYDATEANDHEMOID_API: '/api/Schedule/GetPatientScheduleByDateAndHemoId',
-  START_CURE: '/api/Schedule/StartCure',
-  SAVEPATIENTSCHEDULE_API: '/api/Schedule/SavePatientSchedule',
+  CONFIG_API: '/Api/Config/GetConfigList',
+  PATIENTSCHEDULE_API: '/Api/Schedule/GetPatientScheduleList',
+  GETPATIENTSCHEDULEBYDATEANDHEMOID_API: '/Api/Schedule/GetPatientScheduleByDateAndHemoId',
+  START_CURE: '/Api/Schedule/StartCure',
+  SAVEPATIENTSCHEDULE_API: '/Api/Schedule/SavePatientSchedule',
   GETNEWCUREID_API: '/Api/Cure/GetNewCureID',
   RECIPE_API: '/Api/Recipe/GetRecipeByHemodialysisIDAndDate',
   GETRECIPEBYRECIPEID_API: '/Api/Recipe/GetRecipeByRecipeId',
@@ -138,12 +138,6 @@ const del = <T = any>(url: string, data?: Record<string, any>, loading = true) =
 
 export const api = {
   config: API_CONFIG,
-
-  version: {
-    checkUpdate: () => {
-      return get<{ data: VersionInfo }>(API_CONFIG.GET_NEW_VERSION, {}, false)
-    }
-  },
 
   user: {
     login: (userName: string, password: string) => {

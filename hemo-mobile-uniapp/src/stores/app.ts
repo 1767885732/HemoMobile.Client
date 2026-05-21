@@ -65,16 +65,10 @@ export const useAppStore = defineStore('app', () => {
         uni.setStorageSync('userId', userId.value)
         return { success: true, data: response.data }
       }
-      return { success: false, message: '登录失败' }
+      return { success: false, message: '登录失败，用户名或密码错误' }
     } catch (error: any) {
       console.error('Login error:', error)
-      token.value = 'mock_token_' + Date.now()
-      username.value = userName
-      userId.value = 'mock_user_id'
-      uni.setStorageSync('token', token.value)
-      uni.setStorageSync('username', username.value)
-      uni.setStorageSync('userId', userId.value)
-      return { success: true, data: null, message: '模拟登录成功（服务器未连接）' }
+      return { success: false, message: error.message || '网络请求失败，请检查网络连接' }
     } finally {
       isLoading.value = false
     }
@@ -109,8 +103,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true, data: patients.value }
     } catch (error: any) {
       console.error('Fetch patients error:', error)
-      patients.value = getMockPatients()
-      return { success: true, data: patients.value, message: '使用模拟数据' }
+      return { success: false, message: error.message || '获取患者列表失败' }
     } finally {
       isLoading.value = false
     }
@@ -123,8 +116,8 @@ export const useAppStore = defineStore('app', () => {
 
       if (schedule.RECIPE_ID) {
         const [cureInfoRes, recipeRes] = await Promise.all([
-          api.cure.getMainCureByRecipeId(schedule.RECIPE_ID).catch(() => ({ data: null })),
-          api.recipe.getRecipeByRecipeId(schedule.RECIPE_ID).catch(() => ({ data: null }))
+          api.cure.getMainCureByRecipeId(schedule.RECIPE_ID),
+          api.recipe.getRecipeByRecipeId(schedule.RECIPE_ID)
         ])
         currentCureInfo.value = cureInfoRes.data || null
         currentRecipe.value = recipeRes.data || null
@@ -133,7 +126,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true }
     } catch (error: any) {
       console.error('Fetch patient detail error:', error)
-      return { success: false, message: error.message }
+      return { success: false, message: error.message || '获取患者详情失败' }
     } finally {
       isLoading.value = false
     }
@@ -147,8 +140,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true, data: response.data }
     } catch (error: any) {
       console.error('Save cure info error:', error)
-      currentCureInfo.value = cureInfo
-      return { success: true, message: '保存成功（模拟）' }
+      return { success: false, message: error.message || '保存治疗信息失败' }
     } finally {
       isLoading.value = false
     }
@@ -162,7 +154,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true, data: tempOrders.value }
     } catch (error: any) {
       console.error('Fetch temp orders error:', error)
-      return { success: true, data: tempOrders.value }
+      return { success: false, message: error.message || '获取临时医嘱失败' }
     } finally {
       isLoading.value = false
     }
@@ -176,7 +168,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true, data: longOrders.value }
     } catch (error: any) {
       console.error('Fetch long orders error:', error)
-      return { success: true, data: longOrders.value }
+      return { success: false, message: error.message || '获取长期医嘱失败' }
     } finally {
       isLoading.value = false
     }
@@ -193,11 +185,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true }
     } catch (error: any) {
       console.error('Execute order error:', error)
-      const order = tempOrders.value.find(o => o.CURE_DRUG_ID === comNo)
-      if (order) {
-        order.STATE = state
-      }
-      return { success: true, message: '执行成功（模拟）' }
+      return { success: false, message: error.message || '执行医嘱失败' }
     } finally {
       isLoading.value = false
     }
@@ -211,7 +199,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true, data: hemoParameters.value }
     } catch (error: any) {
       console.error('Fetch hemo parameters error:', error)
-      return { success: true, data: hemoParameters.value }
+      return { success: false, message: error.message || '获取透析参数失败' }
     } finally {
       isLoading.value = false
     }
@@ -225,9 +213,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true, data: response.data }
     } catch (error: any) {
       console.error('Save hemo parameter error:', error)
-      param.hemodialysis_Parameters_Id = 'mock_' + Date.now()
-      hemoParameters.value.unshift(param)
-      return { success: true, message: '保存成功（模拟）' }
+      return { success: false, message: error.message || '保存透析参数失败' }
     } finally {
       isLoading.value = false
     }
@@ -241,8 +227,7 @@ export const useAppStore = defineStore('app', () => {
       return { success: true }
     } catch (error: any) {
       console.error('Delete hemo parameter error:', error)
-      hemoParameters.value = hemoParameters.value.filter(p => p.hemodialysis_Parameters_Id !== paramId)
-      return { success: true, message: '删除成功（模拟）' }
+      return { success: false, message: error.message || '删除透析参数失败' }
     } finally {
       isLoading.value = false
     }
@@ -253,15 +238,12 @@ export const useAppStore = defineStore('app', () => {
       isLoading.value = true
       const response = await api.schedule.startCure(hemoId, date)
       if (currentPatient.value) {
-        currentPatient.value.STATUS = '治疗中'
+        currentPatient.value.STATUS = '1'
       }
       return { success: true, data: response.data }
     } catch (error: any) {
       console.error('Start cure error:', error)
-      if (currentPatient.value) {
-        currentPatient.value.STATUS = '治疗中'
-      }
-      return { success: true, message: '开始治疗成功（模拟）' }
+      return { success: false, message: error.message || '开始治疗失败' }
     } finally {
       isLoading.value = false
     }
@@ -272,15 +254,12 @@ export const useAppStore = defineStore('app', () => {
       isLoading.value = true
       if (currentPatient.value) {
         await api.schedule.savePatientSchedule(currentPatient.value)
-        currentPatient.value.STATUS = '已完成'
+        currentPatient.value.STATUS = '2'
       }
       return { success: true }
     } catch (error: any) {
       console.error('Finish cure error:', error)
-      if (currentPatient.value) {
-        currentPatient.value.STATUS = '已完成'
-      }
-      return { success: true, message: '结束治疗成功（模拟）' }
+      return { success: false, message: error.message || '结束治疗失败' }
     } finally {
       isLoading.value = false
     }
@@ -291,9 +270,9 @@ export const useAppStore = defineStore('app', () => {
       const response = await api.user.getNurseList()
       nurseList.value = response.data || []
       return { success: true, data: nurseList.value }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Fetch nurses error:', error)
-      return { success: false }
+      return { success: false, message: error.message || '获取护士列表失败' }
     }
   }
 
@@ -302,9 +281,9 @@ export const useAppStore = defineStore('app', () => {
       const response = await api.user.getDoctorList()
       doctorList.value = response.data || []
       return { success: true, data: doctorList.value }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Fetch doctors error:', error)
-      return { success: false }
+      return { success: false, message: error.message || '获取医生列表失败' }
     }
   }
 
@@ -317,108 +296,9 @@ export const useAppStore = defineStore('app', () => {
       return { success: false, message: '未获取到版本信息' }
     } catch (error: any) {
       console.error('Check update error:', error)
-      return { success: false, message: error.message || '检查更新失败' }
+      return { success: false, message: '检查更新失败' }
     }
   }
-
-  const getMockPatients = (): MedPatientSchedule[] => [
-    {
-      PATIENT_SCHEDULE_ID: '1',
-      PATIENT_ID: 'P001',
-      PAT_PIC: '',
-      PATIENTNAME: '陈昭荣',
-      SEX: '女',
-      MONITOR_LABEL: '',
-      DIALYSIS_DATE: new Date().toISOString().split('T')[0],
-      BANCI_ID: '1',
-      DIALYSIS_ROOM_ID: 'A',
-      BED_NUMBER: '1',
-      BEDNAME: '床位1',
-      START_TIME: '08:00',
-      END_TIME: '12:00',
-      STATUS: '未开始',
-      HEMODIALYSIS_ID: 'H001',
-      REMARK: '',
-      RECIPE_ID: 'R001',
-      PURIFIER_MODEL_ID: '',
-      USER_ID: 'U001',
-      FOCUS_LEVEL: '',
-      MACHINE_NAME: '透析机A1',
-      MODELNAME: '透析器A',
-      AREANAME: '透析室A区',
-      INFECTIOUS_CHECK_RESULT: '',
-      IS_CRRT: '',
-      PURIFICATION_MODE: '',
-      MODEL_NAME: '',
-      FREQUENCY_HOURS: '4',
-      CHECK_NUM: '',
-      CHECK_DATE: ''
-    },
-    {
-      PATIENT_SCHEDULE_ID: '2',
-      PATIENT_ID: 'P002',
-      PAT_PIC: '',
-      PATIENTNAME: '陈蓓',
-      SEX: '女',
-      MONITOR_LABEL: '',
-      DIALYSIS_DATE: new Date().toISOString().split('T')[0],
-      BANCI_ID: '1',
-      DIALYSIS_ROOM_ID: 'A',
-      BED_NUMBER: '2',
-      BEDNAME: '床位2',
-      START_TIME: '08:00',
-      END_TIME: '12:00',
-      STATUS: '治疗中',
-      HEMODIALYSIS_ID: 'H002',
-      REMARK: '',
-      RECIPE_ID: 'R002',
-      PURIFIER_MODEL_ID: '',
-      USER_ID: 'U002',
-      FOCUS_LEVEL: '',
-      MACHINE_NAME: '透析机A2',
-      MODELNAME: '贝朗F14',
-      AREANAME: '透析室A区',
-      INFECTIOUS_CHECK_RESULT: '',
-      IS_CRRT: '',
-      PURIFICATION_MODE: 'HD',
-      MODEL_NAME: '贝朗F14',
-      FREQUENCY_HOURS: '4',
-      CHECK_NUM: '',
-      CHECK_DATE: ''
-    },
-    {
-      PATIENT_SCHEDULE_ID: '3',
-      PATIENT_ID: 'P003',
-      PAT_PIC: '',
-      PATIENTNAME: '黄元英',
-      SEX: '女',
-      MONITOR_LABEL: '',
-      DIALYSIS_DATE: new Date().toISOString().split('T')[0],
-      BANCI_ID: '1',
-      DIALYSIS_ROOM_ID: 'A',
-      BED_NUMBER: '3',
-      BEDNAME: '床位3',
-      START_TIME: '08:00',
-      END_TIME: '12:00',
-      STATUS: '未开始',
-      HEMODIALYSIS_ID: 'H003',
-      REMARK: '',
-      RECIPE_ID: 'R003',
-      PURIFIER_MODEL_ID: '',
-      USER_ID: 'U003',
-      FOCUS_LEVEL: '',
-      MACHINE_NAME: '透析机A3',
-      MODELNAME: '贝朗F14',
-      AREANAME: '透析室A区',
-      INFECTIOUS_CHECK_RESULT: '',
-      IS_CRRT: '',
-      PURIFICATION_MODE: 'HD',
-      MODEL_NAME: '贝朗F14',
-      FREQUENCY_HOURS: '4',
-      CHECK_NUM: '',
-      CHECK_DATE: ''
-    }
-  ]
 
   return {
     baseUrl,

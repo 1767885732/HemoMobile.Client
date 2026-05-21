@@ -65,68 +65,10 @@ onMounted(() => {
   store.loadBaseUrl()
   store.loadUser()
   
-  checkForUpdate()
-  
   if (store.token) {
     uni.navigateTo({ url: '/pages/search/index' })
   }
 })
-
-const checkForUpdate = async () => {
-  try {
-    const result = await store.checkForUpdate()
-    if (result.success && result.data) {
-      const versionInfo = result.data
-      showUpdateDialog(versionInfo)
-    }
-  } catch (error) {
-    console.error('Update check failed:', error)
-  }
-}
-
-const showUpdateDialog = (versionInfo: any) => {
-  uni.showModal({
-    title: '发现新版本',
-    content: `版本：${versionInfo.versionName}\n\n更新内容：\n${versionInfo.updateContent || '优化体验，修复bug'}`,
-    confirmText: '立即更新',
-    cancelText: versionInfo.forceUpdate ? '' : '稍后',
-    showCancel: !versionInfo.forceUpdate,
-    success: (res) => {
-      if (res.confirm) {
-        downloadApk(versionInfo.apkUrl)
-      } else if (versionInfo.forceUpdate) {
-        uni.exitApp()
-      }
-    }
-  })
-}
-
-const downloadApk = (apkUrl: string) => {
-  uni.showLoading({ title: '下载中...' })
-  
-  uni.downloadFile({
-    url: apkUrl,
-    success: (res) => {
-      uni.hideLoading()
-      if (res.statusCode === 200 && res.tempFilePath) {
-        uni.showToast({ title: '下载完成', icon: 'success' })
-        setTimeout(() => {
-          if (uni.getSystemInfoSync().platform === 'android') {
-            uni.showToast({ title: '请手动安装APK', icon: 'none' })
-          } else {
-            uni.showToast({ title: 'iOS请前往App Store更新', icon: 'none' })
-          }
-        }, 1500)
-      } else {
-        uni.showToast({ title: '下载失败', icon: 'none' })
-      }
-    },
-    fail: () => {
-      uni.hideLoading()
-      uni.showToast({ title: '下载失败', icon: 'none' })
-    }
-  })
-}
 
 const handleLogin = async () => {
   if (!username.value) {
@@ -146,7 +88,7 @@ const handleLogin = async () => {
     if (result.success) {
       uni.hideLoading()
       uni.showToast({ 
-        title: result.message || '登录成功', 
+        title: '登录成功', 
         icon: 'success' 
       })
       setTimeout(() => {
@@ -155,7 +97,7 @@ const handleLogin = async () => {
     } else {
       uni.hideLoading()
       uni.showToast({ 
-        title: result.message || '登录失败，请检查账号密码', 
+        title: result.message || '登录失败', 
         icon: 'none' 
       })
     }
