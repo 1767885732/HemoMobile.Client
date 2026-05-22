@@ -23,7 +23,7 @@ interface VersionInfo {
 }
 
 export const useAppStore = defineStore('app', () => {
-  const baseUrl = ref('http://192.168.100.66:8014')
+  const baseUrl = ref('http://localhost:8014')
   const token = ref('')
   const username = ref('')
   const userId = ref('')
