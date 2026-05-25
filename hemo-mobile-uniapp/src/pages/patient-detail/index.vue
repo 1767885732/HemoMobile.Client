@@ -136,13 +136,18 @@
             <PickerSelect 
               v-model="cureInfoForm.vascular_Access_Type" 
               title="选择通路类型" 
-              :options="vascularAccessTypeOptions"
+              :options="vascularAccessOptions"
               placeholder="请选择通路类型"
             />
           </view>
           <view class="form-item">
             <text class="form-label">通路ID</text>
-            <input class="form-input" v-model="cureInfoForm.vascular_Access_Id" placeholder="请输入通路ID" />
+            <PickerSelect 
+              v-model="cureInfoForm.vascular_Access_Id" 
+              title="选择通路ID" 
+              :options="vascularAccessIdOptions"
+              placeholder="请选择通路ID"
+            />
           </view>
         </view>
 
@@ -409,11 +414,22 @@ const heparinSpeciesOptions = [
   { value: '无肝素', label: '无肝素' }
 ]
 
-const vascularAccessTypeOptions = [
-  { value: '动静脉内瘘', label: '动静脉内瘘' },
-  { value: '中心静脉导管', label: '中心静脉导管' },
-  { value: '人造血管', label: '人造血管' }
-]
+const vascularAccessOptions = computed(() => {
+  const types = new Set<string>()
+  store.vascularAccessList.forEach(item => {
+    if (item.vascular_Access_Type) {
+      types.add(item.vascular_Access_Type)
+    }
+  })
+  return Array.from(types).map(type => ({ value: type, label: type }))
+})
+
+const vascularAccessIdOptions = computed(() => {
+  return store.vascularAccessList.map(item => ({
+    value: item.vascular_Access_Id,
+    label: item.vascular_Access_Id
+  }))
+})
 
 const useTypeOptions = [
   { value: '新', label: '新' },
@@ -532,6 +548,8 @@ const loadPatientData = async () => {
       if (store.currentPatient.FREQUENCY_HOURS && !cureInfoForm.frequency_Hours) {
         cureInfoForm.frequency_Hours = parseFloat(store.currentPatient.FREQUENCY_HOURS)
       }
+
+      await store.fetchVascularAccess(store.currentPatient.HEMODIALYSIS_ID)
     }
 
     uni.hideLoading()

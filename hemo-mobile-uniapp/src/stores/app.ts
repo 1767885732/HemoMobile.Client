@@ -37,6 +37,7 @@ export const useAppStore = defineStore('app', () => {
   const hemoParameters = ref<MedHemoParameter[]>([])
   const nurseList = ref<MedNurse[]>([])
   const doctorList = ref<MedDoctor[]>([])
+  const vascularAccessList = ref<MedVasularAccess[]>([])
 
   const isLoading = ref(false)
 
@@ -287,6 +288,17 @@ export const useAppStore = defineStore('app', () => {
     }
   }
 
+  const fetchVascularAccess = async (hemoId: string): Promise<{ success: boolean; data?: MedVasularAccess[]; message?: string }> => {
+    try {
+      const response = await api.vascularAccess.getPatientVasularAccessByHemoId(hemoId)
+      vascularAccessList.value = response.data || []
+      return { success: true, data: vascularAccessList.value }
+    } catch (error: any) {
+      console.error('Fetch vascular access error:', error)
+      return { success: false, message: error.message || '获取血管通路失败' }
+    }
+  }
+
   const checkForUpdate = async (): Promise<{ success: boolean; data?: VersionInfo; message?: string }> => {
     try {
       const response = await api.version.checkUpdate()
@@ -314,6 +326,7 @@ export const useAppStore = defineStore('app', () => {
     hemoParameters,
     nurseList,
     doctorList,
+    vascularAccessList,
     isLoading,
     saveBaseUrl,
     loadBaseUrl,
@@ -333,6 +346,7 @@ export const useAppStore = defineStore('app', () => {
     finishCure,
     fetchNurses,
     fetchDoctors,
+    fetchVascularAccess,
     checkForUpdate
   }
 })
