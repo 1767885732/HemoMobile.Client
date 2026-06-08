@@ -65,10 +65,87 @@ onMounted(() => {
   store.loadBaseUrl()
   store.loadUser()
   
+  checkForUpdate()
+  
   if (store.token) {
     uni.navigateTo({ url: '/pages/search/index' })
   }
 })
+
+const checkForUpdate = async () => {
+  try {
+    const result = await store.checkForUpdate()
+    if (result.success && result.data) {
+      const versionInfo = result.data
+      showUpdateDialog(versionInfo)
+    }
+  } catch (error) {
+    console.error('Update check failed:', error)
+  }
+}
+
+const showUpdateDialog = (versionInfo: any) => {
+  uni.showModal({
+    title: '发现新版本',
+    content: `版本：${versionInfo.versionName}\n\n更新内容：\n${versionInfo.updateContent || '优化体验，修复bug'}`,
+    confirmText: '立即更新',
+    cancelText: versionInfo.forceUpdate ? '' : '稍后',
+    showCancel: !versionInfo.forceUpdate,
+    success: (res) => {
+      if (res.confirm) {
+        downloadApk(versionInfo.apkUrl)
+      } else if (versionInfo.forceUpdate) {
+        uni.exitApp()
+      }
+    }
+  })
+}
+
+const downloadApk = (apkUrl: string) => {
+  uni.showLoading({ title: '下载中...' })
+  
+  uni.downloadFile({
+    url: apkUrl,
+    success: (res) => {
+      uni.hideLoading()
+      if (res.statusCode === 200 && res.tempFilePath) {
+        uni.showToast({ title: '下载完成', icon: 'success' })
+        
+        #ifdef APP-PLUS
+        uni.saveFile({
+          tempFilePath: res.tempFilePath,
+          success: (saveRes) => {
+            const filePath = saveRes.savedFilePath
+            plus.runtime.install(filePath, {
+              force: false
+            }, () => {
+              uni.showToast({ title: '安装成功', icon: 'success' })
+              plus.runtime.restart()
+            }, (error) => {
+              uni.showToast({ title: '安装失败: ' + error.message, icon: 'none' })
+            })
+          },
+          fail: () => {
+            uni.showToast({ title: '保存文件失败', icon: 'none' })
+          }
+        })
+        #endif
+        
+        #ifndef APP-PLUS
+        setTimeout(() => {
+          uni.showToast({ title: '请手动安装APK', icon: 'none' })
+        }, 1500)
+        #endif
+      } else {
+        uni.showToast({ title: '下载失败', icon: 'none' })
+      }
+    },
+    fail: () => {
+      uni.hideLoading()
+      uni.showToast({ title: '下载失败', icon: 'none' })
+    }
+  })
+}
 
 const handleLogin = async () => {
   if (!username.value) {

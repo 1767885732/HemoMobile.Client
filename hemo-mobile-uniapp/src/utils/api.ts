@@ -139,6 +139,12 @@ const del = <T = any>(url: string, data?: Record<string, any>, loading = true) =
 export const api = {
   config: API_CONFIG,
 
+  version: {
+    checkUpdate: () => {
+      return get<{ data: VersionInfo }>(API_CONFIG.GET_NEW_VERSION)
+    }
+  },
+
   user: {
     login: (userName: string, password: string) => {
       return get<{ data: MedUser }>(`${API_CONFIG.USER_API}?userName=${encodeURIComponent(userName)}&password=${encodeURIComponent(password)}`)
